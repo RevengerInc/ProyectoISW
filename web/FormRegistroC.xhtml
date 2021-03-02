@@ -4,9 +4,69 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>REGISTRO CLIENTES</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+        <!-- Estilos -->
+        <link rel="stylesheet" href="CSS/estilosRegistro.css"></link>
+
     </h:head>
     <h:body>
-        Hello from Facelets
+        <main class = "mainContainer">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-12 shadow-lg">
+                        <div class="text-center mb-5">
+                            <h3 class="text-uppercase mt-1"><strong>Registro</strong> <img src="IMG/Registrar.png"></img></h3>
+                        </div>                        
+
+                        <h:form>
+                            <div class="form-group">
+                                <label for="nombre">Nombre <img src="IMG/Cliente.png"></img></label>
+                                <h:inputText class="form-control" id="nombre"></h:inputText>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Télefono <img src="IMG/telefono.png"></img></label>
+                                <h:inputText class="form-control" id="telefono"></h:inputText>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cedula">Cédula <img src="IMG/identificacion.png"></img></label>
+                                <h:inputText class="form-control" id="cedula"></h:inputText>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="correoElectronico">Correo Electrónico <img src="IMG/email.png"></img></label>
+                                <h:inputText class="form-control" id="correoElectronico"></h:inputText>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="contrasena">Contraseña <img src="IMG/contrasena.png"></img></label>
+                                <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
+                            </div>
+
+
+
+                            <h:commandButton value="Registrarme" class="btn btn-block mt-5 btnRegistrarse"></h:commandButton> 
+
+                            <br></br>
+                            
+                            <div class="d-sm-flex mb-3 align-items-center">
+                                <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 
+
+                            </div>
+
+
+
+
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>   
+        </main>
     </h:body>
 </html>
 
