@@ -1,0 +1,91 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 16, 2021, 10:30:29 AM
+    Author     : César
+*/
+
+.login{
+    border-width: 1px; 
+    height: 100%;
+    width: 70%;
+    border-style: solid;
+    border-color: black;
+    margin-left: auto;
+    margin-right: auto;
+}
+.table{
+}
+.table td, .table th{
+    border-bottom: 1px solid white;
+}
+.precioInput{
+    width: 5rem;
+}
+.centrado{
+    width: 50%;
+   margin-left:auto; 
+   margin-right:auto;
+}
+.etiqueta{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.camposTexto{
+    width: 70%;
+}
+.campoArea{
+    width: 100%;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.inputsP{
+    width: 50px
+}
+table thead{
+    color: white;
+    background-color: #002D6C;
+}
+input{
+    margin-right: 10px;
+}
+select{
+    width: 50%;
+    margin-right: 10px;
+}
+.inputF{
+   width: 150px; 
+}
+.diag{
+    width: 500px;
+}
+
+.texto-imagen-banner{
+    position: absolute;
+ }
+ .texto-imagen-banner h1{
+     color: white;
+}
+.texto-etiqueta{
+    background-color: #D79031;
+}    
+
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.pie-pagina{
+    background-color: #3A2E39;
+    color: white;
+    height: 50px;
+    font-weight: bold;
+    padding: 20px 15px;
+    }
