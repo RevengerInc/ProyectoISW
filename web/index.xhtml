@@ -25,15 +25,15 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-12 shadow-lg">
                         <div class="text-center mb-5">
-                            <h3 class="text-uppercase">Bienvenido a <strong>Marvel</strong></h3>
+                            <h3 class="text-uppercase">Bienvenido a <strong>Marv</strong></h3>
                         </div>                        
 
                         <h:form>
-                            <div class="form-group first">
+                            <div class="form-group">
                                 <label for="correoElectronico">Correo Electrónico</label>
                                 <h:inputText class="form-control" id="correoElectronico"></h:inputText>
                             </div>
-                            <div class="form-group last mb-3">
+                            <div class="form-group mb-3">
                                 <label for="contrasena">Contraseña</label>
                                 <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
                             </div>
@@ -43,20 +43,16 @@
                                 <span class="ml-auto"><a href="#" >Olvidé mi contraseña</a></span> 
                             </div>
                             
-                            <h:commandButton value="Ingresar" class="btn btn-block py-2 botonIngresoLogin"></h:commandButton> 
+                            <h:commandButton value="Ingresar" class="btn btn-block py-2 botonIngresoLogin" action="Principal.xhtml"></h:commandButton> 
 
                             <hr></hr>
                             <h5 align="center" class="pt-3">¿Aún no te has registrado?</h5>
                             
                             <br></br>
                             <div class="d-sm-flex mb-3 align-items-center">
-                                <span class="mx-auto"><a href="#" >Registrarme</a></span> 
+                                <span class="mx-auto"><a href="FormRegistroC.xhtml">Registrarme</a></span> 
 
                             </div>
-                            
-                            
-                            
-                            
 
                         </h:form>
                     </div>
