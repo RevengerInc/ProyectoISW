@@ -89,3 +89,6 @@ select{
     font-weight: bold;
     padding: 20px 15px;
     }
+.imagenBanner{
+    max-height:35rem; 
+}    
