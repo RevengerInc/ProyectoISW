@@ -7,16 +7,73 @@ and open the template in the editor.
     Created on : Feb 16, 2021, 10:30:29 AM
     Author     : César
 */
+/* Top bar*/
 
-.login{
-    border-width: 1px; 
-    height: 100%;
-    width: 70%;
-    border-style: solid;
-    border-color: black;
-    margin-left: auto;
-    margin-right: auto;
+.header{
+    background-color: #CDA065;
 }
+#top-bar-center{
+    margin-top: 10px;
+}
+#top-bar ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+#top-bar li{
+    display: inline-block;
+    padding: 10px 0;
+    color:white;
+    margin-left: 10px;
+}
+#top-bar a{
+    color:white; 
+}
+#top-bar a:hover {
+  color: #BF1A2F;
+}
+#top-bar i{
+    color: white;
+    padding-right: 5px;
+}
+.ui-menu{
+    padding: 0px !important;
+}
+.ui-widget-content a{
+    color:white;
+}    
+.ui-menubar, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: none !important;
+    border: none !important;
+}
+.ui-menu .ui-menu-child {
+    background-color: #CDA065;
+}
+.ui-shadow{
+    box-shadow: none;
+}
+.ui-menu .ui-menuitem-link{
+    padding: 0px;
+}
+.ui-widget-content{
+    border: none;
+}
+.ui-menuitem-active{
+    z-index: 9;
+    
+}
+.ui-menubar .ui-menu-child {
+    top: 17px;
+    left: 0;
+}
+/* Top bar*/
+/* Nav bar*/
+.navbar{
+    background-color: #A26D28;
+    font-size: 1rem;
+}
+
+/* Nav bar*/
 .table{
 }
 .table td, .table th{
@@ -92,3 +149,8 @@ select{
 .imagenBanner{
     max-height:35rem; 
 }    
+/*Banner*/
+.frase-saludo{
+    font-size: 1.5rem;
+}      
+/*Banner*/
