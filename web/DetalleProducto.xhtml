@@ -65,7 +65,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <div class="navbar-nav mx-5 text-center">
-                        <a class="nav-item nav-link" href="index.xhtml">Ingreso<span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="index.xhtml">Ingreso</a>
                         <a class="nav-item nav-link" href="FormRegistroC.xhtml">Registrarse</a>
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
@@ -74,18 +74,51 @@
          </nav>
         <!--Fin del header-->
         <!--Comienzo del body-->
-        <section>
+        <section class="py-4">
             <div class="container">
                 <div class="row">
-                    <h:form>
-                        <h:panelGrid columns="2" cellpadding="2" cellspacing="2">
-                            <h:outputText value="Nombre"></h:outputText>
-                            <h:outputText value="#{beanProducto.producto.nombre}"></h:outputText>
-                        </h:panelGrid>
-                    </h:form>
-                    <br/>
-                    <br/>
-                    <h:link value="Lista" outcome="ListaProducto"></h:link>
+                    <div class="col-lg-6 col-sm-6 pb-2">
+                        <h:form>
+                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="width: 100%"/>
+                        </h:form>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                       
+                        <h:outputText value="#{beanProducto.producto.nombre}"></h:outputText>
+                        
+                        <hr/>
+                        <h:outputText value="Precio:"></h:outputText>
+                        <h:outputText value=" $ #{beanProducto.producto.precio}"></h:outputText>
+                        <br/>
+                        <h:outputText value="Código: "></h:outputText>
+                        <h:outputText value="#{beanProducto.producto.id}"></h:outputText>
+                        <br/>
+                        <h:outputText value="Categoría: "></h:outputText>
+                        <h:outputText value="#{beanProducto.producto.categoria}"></h:outputText>
+                        <br/>
+                        <hr/>
+                        <h:outputText value="Descripción del producto: "></h:outputText>
+                        <br/>
+                        <h:outputText value="#{beanProducto.producto.descripcion}"></h:outputText>
+                    </div>
+                    <div class="col-lg-3 col-sm-3">
+                        <h:outputText value="Cantidad: "></h:outputText>
+                        <h:outputText value="#{beanProducto.producto.cantidad}"></h:outputText>
+                        <br/>
+                        <h:outputText value="#{beanProducto.disponibilidad()}"></h:outputText>
+                        <br/>
+                       <h:form>
+                           <p:spinner value="#{beanPedido.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="0"/>
+                           <br/>
+                           <h:commandButton value="Comprar"></h:commandButton>
+                           <br/>
+                           <h:commandButton value="Agregar al carrito"></h:commandButton>
+                           <br/>
+                          <h:link value="Lista" outcome="ListaProducto"></h:link>
+                        </h:form> 
+                    </div>
                 </div>
             </div>
         </section>

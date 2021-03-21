@@ -43,6 +43,9 @@ public class BeanProducto implements Serializable {
         this.producto = p;
         return "DetalleProducto";
     }
+    public String disponibilidad(){
+        return producto.getCantidad()==0?"Agotado":"Disponible";
+    }
 
     public Producto getProducto() {
         return producto;
