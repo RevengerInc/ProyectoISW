@@ -7,6 +7,11 @@ and open the template in the editor.
     Created on : Feb 16, 2021, 10:30:29 AM
     Author     : César
 */
+/*Section*/
+section{
+    min-height: calc(100vh - 44px - 62px - 50px);
+}    
+/*Section*/
 /* Top bar*/
 
 .header{
