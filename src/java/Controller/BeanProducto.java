@@ -6,7 +6,7 @@
 package Controller;
 
 import Model.Producto;
-import Model.ProductoDB;
+import Model.DB.ProductoDB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
