@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Producto;
 import Model.DB.ProductoDB;
+import Model.Pedido;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -23,9 +24,10 @@ public class BeanProducto implements Serializable {
     /**
      * Creates a new instance of BeanProducto1
      */
-     private ProductoDB productoDB= new ProductoDB();
+    private ProductoDB productoDB= new ProductoDB();
     LinkedList<Producto> listaP = new LinkedList<Producto>();
     private Producto producto= new Producto();
+    
     
     public BeanProducto() {
         listaP=productoDB.moTodo();
@@ -34,6 +36,8 @@ public class BeanProducto implements Serializable {
     public LinkedList<Producto> getListaP() {
         return listaP;
     }
+    
+    
 
     public void setListaP(LinkedList<Producto> listaP) {
         this.listaP = listaP;
@@ -58,4 +62,14 @@ public class BeanProducto implements Serializable {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
+
+    public ProductoDB getProductoDB() {
+        return productoDB;
+    }
+
+    public void setProductoDB(ProductoDB productoDB) {
+        this.productoDB = productoDB;
+    }
+    
+    
 }

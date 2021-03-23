@@ -13,21 +13,27 @@ import java.util.LinkedList;
  */
 public class Pedido {
     
-    private LinkedList<Producto> listaProductos = new LinkedList<Producto>();
+    private LinkedList<ProductosCarrito> listaProductos = new LinkedList<ProductosCarrito>();
     private Direccion direccionEntrega;
     
     
     public Pedido() {
         
     }
+    
+    public void agregarProducto (Producto producto, int cantidad){
+        listaProductos.add(new ProductosCarrito(producto, cantidad));
+    }
 
-    public LinkedList<Producto> getListaProductos() {
+    public LinkedList<ProductosCarrito> getListaProductos() {
         return listaProductos;
     }
 
-    public void setListaProductos(LinkedList<Producto> listaProductos) {
+    public void setListaProductos(LinkedList<ProductosCarrito> listaProductos) {
         this.listaProductos = listaProductos;
     }
+
+
 
     public Direccion getDireccionEntrega() {
         return direccionEntrega;
@@ -36,6 +42,7 @@ public class Pedido {
     public void setDireccionEntrega(Direccion direccionEntrega) {
         this.direccionEntrega = direccionEntrega;
     }
+    
     
       
 }

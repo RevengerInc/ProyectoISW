@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Model.Pedido;
+import Model.Producto;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -17,13 +19,16 @@ import java.io.Serializable;
 @SessionScoped
 public class BeanMantenimientoPedido implements Serializable {
 
-    /**
-     * Creates a new instance of BeanPedido
-     */
+    private Pedido objPedido = new Pedido();
+    private int cantidadSolicitada;
+    
     public BeanMantenimientoPedido() {
-        
+
     }
-     private int cantidadSolicitada;
+    
+    public void agregarProductoPedido(Producto producto) {
+        objPedido.agregarProducto(producto, cantidadSolicitada);
+    }
 
     public int getCantidadSolicitada() {
         return cantidadSolicitada;
@@ -32,5 +37,14 @@ public class BeanMantenimientoPedido implements Serializable {
     public void setCantidadSolicitada(int cantidadSolicitada) {
         this.cantidadSolicitada = cantidadSolicitada;
     }
+
+    public Pedido getObjPedido() {
+        return objPedido;
+    }
+
+    public void setObjPedido(Pedido objPedido) {
+        this.objPedido = objPedido;
+    }
+
     
 }
