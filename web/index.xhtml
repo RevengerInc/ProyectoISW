@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>LOGIN MARV</title>
+       
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+        <!-- Estilos -->
+        <link rel="stylesheet" href="CSS/estilosLogin.css" type="text/css"></link>
+    </h:head>
+    <h:body class="BodyLogin">
+        <header>
+            
+
+        </header>
+        <main class="CentrarContenidoLogin"> 
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-12 shadow-lg">
+                        <div class="text-center mb-5">
+                            <h3 class="text-uppercase">Bienvenido a <strong>Marv</strong></h3>
+                        </div>                        
+
+                        <h:form>
+                            <div class="form-group">
+                                <label for="correoElectronico">Correo Electrónico</label>
+                                <h:inputText class="form-control" id="correoElectronico"></h:inputText>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="contrasena">Contraseña</label>
+                                <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
+                            </div>
+                            
+                            
+                            <div class="d-sm-flex mb-3 align-items-center">
+                                <span class="ml-auto"><a href="#" >Olvidé mi contraseña</a></span> 
+                            </div>
+                            
+                            <h:commandButton value="Ingresar" class="btn btn-block py-2 botonIngresoLogin" action="Principal.xhtml"></h:commandButton> 
+
+                            <hr></hr>
+                            <h5 align="center" class="pt-3">¿Aún no te has registrado?</h5>
+                            
+                            <br></br>
+                            <div class="d-sm-flex mb-3 align-items-center">
+                                <span class="mx-auto"><a href="FormRegistroC.xhtml">Registrarme</a></span> 
+
+                            </div>
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>   
+        </main>
+
+        
+        
+    </h:body>
+</html>

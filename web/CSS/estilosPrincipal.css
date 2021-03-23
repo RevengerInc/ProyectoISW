@@ -1,0 +1,176 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 16, 2021, 10:30:29 AM
+    Author     : César
+*/
+/*Section*/
+section{
+    min-height: calc(100vh - 44px - 62px - 50px);
+}    
+/*Section*/
+/* Top bar*/
+
+.header{
+    background-color: #CDA065;
+}
+#top-bar-center{
+    margin-top: 10px;
+}
+#top-bar ul{
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+}
+#top-bar li{
+    display: inline-block;
+    padding: 10px 0;
+    color:white;
+    margin-left: 10px;
+}
+#top-bar a{
+    color:white; 
+}
+#top-bar a:hover {
+  color: #BF1A2F;
+}
+#top-bar i{
+    color: white;
+    padding-right: 5px;
+}
+.ui-menu{
+    padding: 0px !important;
+}
+.ui-widget-content a{
+    color:white;
+}    
+.ui-menubar, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: none !important;
+    border: none !important;
+}
+.ui-menu .ui-menu-child {
+    background-color: #CDA065;
+}
+.ui-shadow{
+    box-shadow: none;
+}
+.ui-menu .ui-menuitem-link{
+    padding: 0px;
+}
+.ui-widget-content{
+    border: none;
+}
+.ui-menuitem-active{
+    z-index: 9;
+    
+}
+.ui-menubar .ui-menu-child {
+    top: 17px;
+    left: 0;
+}
+/* Top bar*/
+/* Nav bar*/
+.navbar{
+    background-color: #A26D28;
+    font-size: 1rem;
+}
+
+/* Nav bar*/
+.table{
+}
+.table td, .table th{
+    border-bottom: 1px solid white;
+}
+.precioInput{
+    width: 5rem;
+}
+.centrado{
+    width: 50%;
+   margin-left:auto; 
+   margin-right:auto;
+}
+.etiqueta{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.camposTexto{
+    width: 70%;
+}
+.campoArea{
+    width: 100%;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.inputsP{
+    width: 50px
+}
+table thead{
+    color: white;
+    background-color: #002D6C;
+}
+input{
+    margin-right: 10px;
+}
+select{
+    width: 50%;
+    margin-right: 10px;
+}
+.inputF{
+   width: 150px; 
+}
+.diag{
+    width: 500px;
+}
+
+.texto-imagen-banner{
+    position: absolute;
+ }
+ .texto-imagen-banner h1{
+     color: white;
+}
+.texto-etiqueta{
+    background-color: #D79031;
+}    
+
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.pie-pagina{
+    background-color: #3A2E39;
+    color: white;
+    height: 50px;
+    font-weight: bold;
+    padding: 20px 15px;
+    }
+.imagenBanner{
+    max-height:35rem; 
+}    
+/*Banner*/
+.frase-saludo{
+    font-size: 1.5rem;
+}      
+/*Banner*/
+
+/*Detalle producto*/
+
+#nombreProducto{
+    font-size: 2rem;
+}
+
+#precioProducto{
+    font-size: 1.5rem;
+    color: #BF1A2F;
+}
+.titulosProducto{
+    font-weight: bold;
+}
+/*Detalle producto*/
