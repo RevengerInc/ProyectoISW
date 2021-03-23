@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Pedido {
     
     private LinkedList<ProductosCarrito> listaProductos = new LinkedList<ProductosCarrito>();
-    private Direccion direccionEntrega;
+    
     
     
     public Pedido() {
@@ -35,14 +35,7 @@ public class Pedido {
 
 
 
-    public Direccion getDireccionEntrega() {
-        return direccionEntrega;
-    }
-
-    public void setDireccionEntrega(Direccion direccionEntrega) {
-        this.direccionEntrega = direccionEntrega;
-    }
-    
-    
+   
+   
       
 }

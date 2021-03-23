@@ -9,8 +9,6 @@ package Model.DB;
  *
  * @author Fabian
  */
-public class FacturaDB {
-    
-    
+public class BodegueroDB {
     
 }

@@ -5,21 +5,10 @@
  */
 package Model;
 
-import java.time.LocalDate;
-
 /**
  *
  * @author Fabian
  */
-public class Factura {
+public class Cliente {
     
-    private Pedido pedido;
-    
-    private Cliente cliente;
-    
-    private String id = "";
-    private String estado = "";
-    private LocalDate fechaPedido;
-      
- 
 }
