@@ -48,7 +48,7 @@ public class BeanProducto implements Serializable {
     }
     
     public String color(){
-        return "green";
+        return producto.getCantidad()==0?"red":"green";
     }
     
     public Producto getProducto() {

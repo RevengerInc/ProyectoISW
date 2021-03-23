@@ -34,18 +34,22 @@
             <div class="row">
                 <div id="top-bar" class="col-md-9">
                     <ul>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:contact@example.com">contact@example.com</a></li>
-                        <li><i class="fa fa-phone"></i> +1 5589 55488 55</li>
-                        <li><i class="fa fa-calendar"></i> Mon-Fri 9am - 5pm</li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
+                        <li><i class="fa fa-phone"></i> +506 1111 1111</li>
+                        <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
                     </ul>
                 </div>
                 <div id="top-bar-center" class="col-md-3">
                     <h:form>
                             <p:menubar>
-                                    <p:submenu label="File">
-                                            <p:menuitem value="Edit"></p:menuitem>
-                                            <p:separator/>
-                                            <p:menuitem value="Exit"></p:menuitem>
+                                    <p:submenu label="Usuario">
+                                        <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="index"></p:menuitem>
                                     </p:submenu>
                             </p:menubar>
                     </h:form>
@@ -65,11 +69,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <div class="navbar-nav mx-5 text-center">
-                        <a class="nav-item nav-link" href="index.xhtml">Ingreso</a>
-                        <a class="nav-item nav-link" href="FormRegistroC.xhtml">Registrarse</a>
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
                 </div>
+                <h:outputText value="3"/>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <h:form>
+                  <h:commandButton value="Ver carrito"/>
+                </h:form>
             </div>
          </nav>
         <!--Fin del header-->
@@ -90,16 +97,16 @@
                         
                         <hr/>
                         <h:outputText value="Precio:"></h:outputText>
-                        <h:outputText value=" $ #{beanProducto.producto.precio}"></h:outputText>
+                        <h:outputText value=" $ #{beanProducto.producto.precio}" id="precioProducto"></h:outputText>
                         <br/>
-                        <h:outputText value="Código: "></h:outputText>
+                        <h:outputText value="Código: " class="titulosProducto"></h:outputText>
                         <h:outputText value="#{beanProducto.producto.id}"></h:outputText>
                         <br/>
-                        <h:outputText value="Categoría: "></h:outputText>
+                        <h:outputText value="Categoría: " class="titulosProducto"></h:outputText>
                         <h:outputText value="#{beanProducto.producto.categoria}"></h:outputText>
                         <br/>
                         <hr/>
-                        <h:outputText value="Descripción del producto: "></h:outputText>
+                        <h:outputText value="Descripción del producto: " class="titulosProducto"></h:outputText>
                         <br/>
                         <h:outputText value="#{beanProducto.producto.descripcion}"></h:outputText>
                     </div>

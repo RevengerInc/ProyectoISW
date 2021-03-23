@@ -159,3 +159,18 @@ select{
     font-size: 1.5rem;
 }      
 /*Banner*/
+
+/*Detalle producto*/
+
+#nombreProducto{
+    font-size: 2rem;
+}
+
+#precioProducto{
+    font-size: 1.5rem;
+    color: #BF1A2F;
+}
+.titulosProducto{
+    font-weight: bold;
+}
+/*Detalle producto*/
