@@ -12,8 +12,16 @@ package Model;
 public class Direccion {
      
     private int idDireccion;
-    
     private String Descripcion;
+
+    public Direccion(int idDireccion, String Descripcion) {
+        this.idDireccion = idDireccion;
+        this.Descripcion = Descripcion;
+    }
+    
+    public String toString (){
+        return Descripcion;
+    }
     
     
     

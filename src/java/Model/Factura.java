@@ -27,7 +27,7 @@ public class Factura {
     private TipoVenta tipoVenta;
     private final double IVA = 0.15;
     private double descuento = 0;
-    
+    private Horario horario;
  
     public Factura() {
         

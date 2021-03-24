@@ -33,6 +33,10 @@ public class BeanMantenimientoPedido implements Serializable {
         objPedido.agregarProducto(producto, cantidadSolicitada);
         
     }
+    
+    public double totalPagar (){
+        return objPedido.totalPagar();
+    }
 
     public void eliminarProductoCarrito(ProductosCarrito p){
         objPedido.eliminarProducto(p);

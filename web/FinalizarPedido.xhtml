@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>CARRITO COMPRAS</title>
 
+        <link rel="stylesheet" href="CSS/estilosFinalizarPedido.css"></link>
         <!-- Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -70,6 +71,67 @@
                 </div>
             </div>
         </nav>
+        
+        <main class = "mainContainer">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-12 shadow-lg">
+                        <div class="text-center mb-5">
+                            <h3 class="text-uppercase mt-1"><strong>Información de Entrega</strong> <img src="IMAGES/ICONS/Registrar.png"></img></h3>
+                        </div>                        
+
+                        <h:form>
+                            <div class="form-group">
+                                <h:outputLabel value="Horarios de Entrega" class="pr-3"></h:outputLabel>
+                                <h:selectOneMenu label="Horarios" onchange="submit()" value="#{beanFactura.horaEntrega}">
+                                    <f:selectItems value="#{beanFactura.mostrarHorarios()}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="Total a Pagar" class="pr-3"></h:outputLabel>
+                                <h:outputText value="#{beanPedido.totalPagar()}"></h:outputText>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="Dirección de Entrega" class="pr-3"></h:outputLabel>
+                                <h:selectOneMenu label="Direcciones" onchange="submit()" value="#{beanDireccion.direccionEntrega}">
+                                    <f:selectItems value="#{beanDireccion.obtenerDirecciones()}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel value="Tipo de entrega" class="pr-3"></h:outputLabel>
+                                <h:selectOneMenu label="Entrega" onchange="submit()" value="#{beanFactura.tipoEnvioElegido}">
+                                    <f:selectItems value="#{beanFactura.tiposEnvio()}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="form-group mb-3">
+                                <h:outputLabel value="Forma de Pago" class="pr-3"></h:outputLabel>
+                                <h:selectOneMenu label="FromaPago" onchange="submit()" value="#{beanFactura.tipoVentaElegido}">
+                                    <f:selectItems value="#{beanFactura.tipoVenta()}"></f:selectItems>
+                                </h:selectOneMenu>
+                            </div>
+
+
+                            <h:commandButton value="Registrarme" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
+
+                            <br></br>
+
+                            <div class="d-sm-flex mb-3 align-items-center">
+                                <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 
+
+                            </div>
+
+
+
+
+
+                        </h:form>
+                    </div>
+                </div>
+            </div>   
+        </main>
         
     </h:body>
 </html>

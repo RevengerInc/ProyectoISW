@@ -6,8 +6,12 @@
 package Controller;
 
 import Model.DB.FacturaDB;
+import Model.DB.HorarioDB;
 import Model.Enums.EstadoFactura;
+import Model.Enums.TipoEnvio;
+import Model.Enums.TipoVenta;
 import Model.Factura;
+import Model.Horario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -27,7 +31,10 @@ public class BeanFactura implements Serializable {
     private FacturaDB facturaDB = new FacturaDB();
     private LinkedList <Factura> listaF = new LinkedList<>();
     private Factura factura = new Factura();
-    
+    private HorarioDB horarioDB = new HorarioDB();
+    private String horaEntrega = "";
+    private TipoEnvio tipoEnvioElegido;
+    private TipoVenta tipoVentaElegido;
     public BeanFactura() {
         listaF = facturaDB.mostrarFacturasPendientes();
         
@@ -41,6 +48,18 @@ public class BeanFactura implements Serializable {
             }
         }
         return facturasPendientes;
+    }
+    
+    public TipoEnvio[] tiposEnvio (){
+        return TipoEnvio.values();
+    }
+    
+    public TipoVenta[] tipoVenta (){
+        return TipoVenta.values();
+    }
+    
+    public LinkedList<Horario> mostrarHorarios(){
+        return horarioDB.obtenerHorarios();
     }
     
     public String completarPedido(Factura f){
@@ -68,6 +87,15 @@ public class BeanFactura implements Serializable {
         this.listaF = listaF;
     }
 
+    public TipoEnvio getTipoEnvioElegido() {
+        return tipoEnvioElegido;
+    }
+
+    public void setTipoEnvioElegido(TipoEnvio tipoEnvioElegido) {
+        this.tipoEnvioElegido = tipoEnvioElegido;
+    }
+
+    
     public Factura getFactura() {
         return factura;
     }
@@ -75,6 +103,33 @@ public class BeanFactura implements Serializable {
     public void setFactura(Factura factura) {
         this.factura = factura;
     }
+
+    public TipoVenta getTipoVentaElegido() {
+        return tipoVentaElegido;
+    }
+
+    public void setTipoVentaElegido(TipoVenta tipoVentaElegido) {
+        this.tipoVentaElegido = tipoVentaElegido;
+    }
+    
+    
+
+    public HorarioDB getHorarioDB() {
+        return horarioDB;
+    }
+
+    public void setHorarioDB(HorarioDB horarioDB) {
+        this.horarioDB = horarioDB;
+    }
+
+    public String getHoraEntrega() {
+        return horaEntrega;
+    }
+
+    public void setHoraEntrega(String horaEntrega) {
+        this.horaEntrega = horaEntrega;
+    }
+    
     
     
     

@@ -24,6 +24,14 @@ public class Pedido {
         this.listaProductos= listaProductos;
     }
     
+    public double totalPagar (){
+        double total = 0;
+        for (int i = 0; i < listaProductos.size(); i++) {
+            total = total + listaProductos.get(i).getProducto().getPrecio();
+        }
+        return total;
+    }
+    
     public void agregarProducto (Producto producto, int cantidad){
         
         for(int i = 0; i < listaProductos.size(); i++){
