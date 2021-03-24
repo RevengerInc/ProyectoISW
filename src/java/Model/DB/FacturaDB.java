@@ -46,7 +46,7 @@ public class FacturaDB {
         factura1.setTipoVenta(TipoVenta.Contado);
         
         factura2.setCliente(new ClienteDB().obtenerCliente());
-        factura2.setPedido(pedido1);
+        factura2.setPedido(pedido2);
         factura2.setId("2");
         factura2.setEstado(EstadoFactura.Pendiente);
         factura2.setFechaPedido(LocalDate.now());
