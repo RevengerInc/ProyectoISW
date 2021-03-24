@@ -31,7 +31,7 @@ public class FacturaDB {
         Pedido pedido2 = new Pedido();
         
         pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-        
+        pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),7));
         
         pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),7));
         pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),10));
@@ -46,7 +46,7 @@ public class FacturaDB {
         factura1.setTipoVenta(TipoVenta.Contado);
         
         factura2.setCliente(new ClienteDB().obtenerCliente());
-        factura2.setPedido(pedido1);
+        factura2.setPedido(pedido2);
         factura2.setId("2");
         factura2.setEstado(EstadoFactura.Pendiente);
         factura2.setFechaPedido(LocalDate.now());

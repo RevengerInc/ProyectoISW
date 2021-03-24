@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.DB.FacturaDB;
+import Model.Enums.EstadoFactura;
 import Model.Factura;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -30,6 +31,21 @@ public class BeanFactura implements Serializable {
     public BeanFactura() {
         listaF = facturaDB.mostrarFacturasPendientes();
         
+    }
+    
+    public LinkedList<Factura> mostrarFacturasPendientes(){
+        LinkedList <Factura> facturasPendientes = new LinkedList<>();
+        for (Factura factura1 : listaF) {
+            if(factura1.getEstado().equals(EstadoFactura.Pendiente)){
+                facturasPendientes.add(factura1);
+            }
+        }
+        return facturasPendientes;
+    }
+    
+    public String completarPedido(Factura f){
+        this.factura.setEstado(EstadoFactura.Entregado);
+        return "PrincipalBodega";
     }
     
      public String detalleFactura(Factura f){

@@ -67,13 +67,15 @@
                         <h:form>
                             <p:dataTable var="DetFactura" value="#{beanFactura.factura.pedido.listaProductos}">
                                 <f:facet name="header">Lista de Productos</f:facet>
+                                 <p:column headerText="Código">
+                                #{DetFactura.producto.id}
+                                </p:column>
                                 <p:column headerText="Nombre">
                                 #{DetFactura.producto.nombre}
                                 </p:column>
                                 <p:column headerText="Cantidad Solicitada">
-                                #{DetFactura.cantidad}
+                                #{DetFactura.cantidadSolicita}
                                 </p:column>
-                               
                                 //more columns
                                 <f:facet name="footer">
                                     In total there are cars.
@@ -82,8 +84,21 @@
                         </h:form>
                     </div>
                     <div class="col-lg-5 col-sm-5">
+                        <h:form>
 
-                        
+                            <strong>Indicación de Entrega: </strong> <h:outputLabel id="indicacion" value="#{beanFactura.factura.tipoEnvio}"></h:outputLabel>
+                            <br></br>
+                            <br></br>
+                            <strong>Cliente: </strong> <h:outputLabel id="cliente" value="#{beanFactura.factura.cliente.nombre}"></h:outputLabel>
+                            <br></br>
+                            <br></br>
+                            <strong>Fecha del pedido: </strong> <h:outputLabel id="fecha" value="#{beanFactura.factura.fechaPedido}"></h:outputLabel>
+                            <br></br>
+                            <br></br>
+                            <h:commandButton action="#{beanFactura.completarPedido(beanFactura.factura)}" class="btn btn-info" value="Completar Pedido"></h:commandButton>
+                            <h:commandButton action="PrincipalBodega.xhtml" class="btn btn-warning pl-3" value="Regresar" ></h:commandButton>
+
+                        </h:form>                      
                     </div>
                     
                 </div>

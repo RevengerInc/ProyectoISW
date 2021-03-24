@@ -65,9 +65,8 @@ public class Factura {
     public void setId(String id) {
         this.id = id;
     }
-
     
-
+  
     public LocalDate getFechaPedido() {
         return fechaPedido;
     }
