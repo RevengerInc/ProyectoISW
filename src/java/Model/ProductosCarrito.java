@@ -11,11 +11,11 @@ package Model;
  */
 public class ProductosCarrito {
     private Producto producto;
-    private int cantidad;
+    private int cantidadSolicita;
 
     public ProductosCarrito(Producto producto, int cantidad) {
         this.producto = producto;
-        this.cantidad = cantidad;
+        this.cantidadSolicita = cantidad;
     }
 
     public Producto getProducto() {
@@ -26,12 +26,12 @@ public class ProductosCarrito {
         this.producto = producto;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getCantidadSolicita() {
+        return cantidadSolicita;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadSolicita(int cantidad) {
+        this.cantidadSolicita = cantidad;
     }
     
     

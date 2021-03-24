@@ -7,9 +7,11 @@ package Controller;
 
 import Model.Pedido;
 import Model.Producto;
+import Model.ProductosCarrito;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -27,9 +29,14 @@ public class BeanMantenimientoPedido implements Serializable {
     }
     
     public void agregarProductoPedido(Producto producto) {
+        objPedido.controlCantidad(producto, cantidadSolicitada);
         objPedido.agregarProducto(producto, cantidadSolicitada);
+        
     }
 
+    public void eliminarProductoCarrito(ProductosCarrito p){
+        objPedido.eliminarProducto(p);
+    }
     public int getCantidadSolicitada() {
         return cantidadSolicitada;
     }

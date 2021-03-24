@@ -72,7 +72,7 @@
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
                 </div>
-                <h:outputText value="3"/>
+                <h:outputText value="#{beanPedido.objPedido.listaProductos.size()}"/>
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 <h:form>
                     <h:commandButton value="Ver carrito" action="CarritoCompras.xhtml"/>
