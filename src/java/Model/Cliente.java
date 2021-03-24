@@ -5,10 +5,19 @@
  */
 package Model;
 
+import Model.Enums.TipoUsuario;
+
 /**
  *
  * @author Fabian
  */
-public class Cliente {
+public class Cliente extends Usuario{
+
+    public Cliente(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID) {
+        super(nombre, tipoUsuario, cedula, telefono, correoID);
+    }
     
+    
+    
+ 
 }

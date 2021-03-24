@@ -15,7 +15,10 @@ import java.util.LinkedList;
  * @author Fabian
  */
 public class PedidoDB {
-      public  LinkedList<Pedido> moTodo(){
+
+   
+       
+      public LinkedList<Pedido> moTodo(){
       String select = "";
       LinkedList<Pedido> listaPedidos = new LinkedList<Pedido>();
       LinkedList<ProductosCarrito> listaProductos1 = new LinkedList<ProductosCarrito>();
@@ -31,6 +34,10 @@ public class PedidoDB {
                 listaProductos1.add(new ProductosCarrito(new Producto("nfdlal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
                 listaProductos1.add(new ProductosCarrito(new Producto("nfslal433", "Red Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
 
+                listaProductos1.add(new ProductosCarrito(new Producto("nhglal433", "Black Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("ndslal433", "Blue Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("ngflal433", "Red Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
+                
                 
                 pedido1.setListaProductos(listaProductos1);
                 pedido2.setListaProductos(listaProdcutos2);

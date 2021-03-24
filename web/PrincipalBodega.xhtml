@@ -147,22 +147,22 @@
             <div class="container">
                 <div class="row">
                     <h:form>
-                        <p:dataTable var="car" value="#{beanProducto.listaP}">
+                        <p:dataTable var="factura" value="#{beanFactura.listaF}">
                             <f:facet name="header">Lista de Pedidos</f:facet>
                             <p:column headerText="Fecha">
-                                <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 50%"></h:graphicImage>
+                               #{factura.fechaPedido}
                             </p:column>
                             <p:column headerText="Estado">
-                                <!--#{car.nombre}-->
+                                #{factura.estado}
                             </p:column>
                             <p:column headerText="Cliente">
-                                <!--#{car.descripcion}-->
+                                #{factura.cliente.nombre}
                             </p:column>
                             <p:column headerText="Indicación Pedido">
-                                <!--#{car.cantidad}-->
+                                #{factura.tipoEnvio}
                             </p:column>
-                            <p:column headerText="Link">
-<!--                                <h:commandLink value="Detalle" action="#{beanProducto.detalle(car)}" style="color: black"></h:commandLink>-->
+                            <p:column headerText="Detalle">
+                                <h:commandLink value="Detalle" action="#{beanFactura.detalleFactura(factura)}" style="color: black"></h:commandLink>
                             </p:column>
                             //more columns
                             <f:facet name="footer">

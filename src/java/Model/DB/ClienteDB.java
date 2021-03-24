@@ -5,10 +5,16 @@
  */
 package Model.DB;
 
+import Model.Cliente;
+import Model.Enums.TipoUsuario;
+
 /**
  *
  * @author Fabian
  */
 public class ClienteDB {
     
+    public Cliente obtenerCliente(){
+        return new Cliente("Fabian Espinoza", TipoUsuario.Cliente, "118110563","88888888","fabian16viquez@gmail.com");
+    }
 }

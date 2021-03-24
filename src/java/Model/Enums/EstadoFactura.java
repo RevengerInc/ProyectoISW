@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model.DB;
-
-import Model.Factura;
-import java.util.LinkedList;
+package Model.Enums;
 
 /**
  *
  * @author Fabian
  */
-public class BodegueroDB {
-    
-    
-   
-    
+public enum EstadoFactura {
+    Pendiente,
+    Entregado,
+    EnProceso
 }

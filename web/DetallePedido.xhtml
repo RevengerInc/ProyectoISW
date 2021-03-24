@@ -1,12 +1,102 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Detalle del Pedido</title>
+        
+         <!-- Bootstrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        <link rel="stylesheet" href="CSS/estilosPrincipal.css"></link>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <header class="header">
+        <div class="container header">
+            <div class="row">
+                <div id="top-bar" class="col-md-9">
+                    <ul>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
+                        <li><i class="fa fa-phone"></i> +506 1111 1111</li>
+                        <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
+                    </ul>
+                </div>
+                <div id="top-bar-center" class="col-md-3">
+                    <h:form>
+                            <p:menubar>
+                                    <p:submenu label="Usuario">
+                                        <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}"></p:menuitem>
+                                        <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="index"></p:menuitem>
+                                    </p:submenu>
+                            </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+        </header>
+        <h1 class="text-center">Detalle del Pedido</h1>
+
+        <!--Comienzo del body-->
+        <section class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-7 pb-2">
+                        <h:form>
+                            <p:dataTable var="DetFactura" value="#{beanFactura.factura.pedido.listaProductos}">
+                                <f:facet name="header">Lista de Productos</f:facet>
+                                <p:column headerText="Nombre">
+                                #{DetFactura.producto.nombre}
+                                </p:column>
+                                <p:column headerText="Cantidad Solicitada">
+                                #{DetFactura.cantidad}
+                                </p:column>
+                               
+                                //more columns
+                                <f:facet name="footer">
+                                    In total there are cars.
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                    <div class="col-lg-5 col-sm-5">
+
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!--Fin del body-->
+        <!--Comienzo footer-->
+        <div class="container-fluid pie-pagina">
+            <div class="container">
+                <div class="row justify-content-center text-center">© 2021 Revenger Inc.</div>
+            </div>
+        </div>
+        <!--Fin footer-->
     </h:body>
 </html>
 

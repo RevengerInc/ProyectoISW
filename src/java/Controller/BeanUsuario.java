@@ -56,4 +56,6 @@ public class BeanUsuario implements Serializable {
     public String opcion4(){
         return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"":"";
     }
+    
+    
 }
