@@ -147,7 +147,7 @@
             <div class="container">
                 <div class="row">
                     <h:form>
-                        <p:dataTable var="factura" value="#{beanFactura.listaF}">
+                        <p:dataTable var="factura" value="#{beanFactura.mostrarFacturasPendientes()}">
                             <f:facet name="header">Lista de Pedidos</f:facet>
                             <p:column headerText="Fecha">
                                #{factura.fechaPedido}
@@ -155,14 +155,9 @@
                             <p:column headerText="Estado">
                                 #{factura.estado}
                             </p:column>
-                            <p:column headerText="Cliente">
-                                #{factura.cliente.nombre}
-                            </p:column>
-                            <p:column headerText="Indicación Pedido">
-                                #{factura.tipoEnvio}
-                            </p:column>
+                                
                             <p:column headerText="Detalle">
-                                <h:commandLink value="Detalle" action="#{beanFactura.detalleFactura(factura)}" style="color: black"></h:commandLink>
+                                <h:commandLink value="Ver" action="#{beanFactura.detalleFactura(factura)}" style="color: black"></h:commandLink>
                             </p:column>
                             //more columns
                             <f:facet name="footer">

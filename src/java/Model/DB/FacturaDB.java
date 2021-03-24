@@ -31,7 +31,7 @@ public class FacturaDB {
         Pedido pedido2 = new Pedido();
         
         pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-        
+        pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),7));
         
         pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),7));
         pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),10));
