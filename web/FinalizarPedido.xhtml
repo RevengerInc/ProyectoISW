@@ -69,62 +69,10 @@
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
                 </div>
-                <div>
-                    <h:form>
-                        <h:commandButton action="FinalizarPedido.xhtml" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
-                    </h:form>
-                    
-                </div>
             </div>
         </nav>
 
-        <section>
-            <div class="container">
-                <div class="row">
-                    <h:form>
-                        <p:dataTable var="product" value="#{beanPedido.objPedido.listaProductos}">
-                            <f:facet name="header">Carrito de compras</f:facet>
-                            <p:column headerText="Foto">
-
-                                <div align="center">
-                                    <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 50%"></h:graphicImage>
-                                </div>
-
-                            </p:column>
-                            <p:column headerText="Producto">
-                                #{product.producto.nombre}
-                            </p:column>
-                            <p:column headerText="Descripción">
-                                #{product.producto.descripcion}
-                            </p:column>
-                            <p:column headerText="Cantidad Solicitada">
-
-                                <div align="center">
-                                    #{product.cantidadSolicita}
-                                </div>
-
-                            </p:column>
-                            <p:column headerText="Ver Más">
-                                <h:commandLink value="Detalle" action="#{beanProducto.detalle(product.producto)}" style="color: black"></h:commandLink>
-                            </p:column>
-                            <p:column headerText="Eliminar"> 
-                                <div align="center">
-                                    <h:commandButton image="IMAGES/ICONS/borrar.png" actionListener="#{beanPedido.eliminarProductoCarrito(product)}"></h:commandButton>
-                                </div>
-
-                            </p:column>
-                            <f:facet name="footer">
-                                In total there are cars.
-                            </f:facet>
-                        </p:dataTable>
-                        <div class="mt-2" align="center">
-                            <h:commandButton action="FinalizarPedido.xhtml" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-        </section>
-
     </h:body>
 </html>
+
 

@@ -8,7 +8,7 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Producto</title>
-        
+
         <!-- Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -17,48 +17,48 @@
               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
         <!-- JS, Popper.js, and jQuery -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
+                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"></script>
+                integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
         <script name="jquery/jquery.js" library="primefaces"></script>
         <link rel="stylesheet" href="CSS/estilosPrincipal.css"></link>
     </h:head>
     <h:body>
         <header class="header">
-        <div class="container header">
-            <div class="row">
-                <div id="top-bar" class="col-md-9">
-                    <ul>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
-                        <li><i class="fa fa-phone"></i> +506 1111 1111</li>
-                        <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
-                    </ul>
-                </div>
-                <div id="top-bar-center" class="col-md-3">
-                    <h:form>
+            <div class="container header">
+                <div class="row">
+                    <div id="top-bar" class="col-md-9">
+                        <ul>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
+                            <li><i class="fa fa-phone"></i> +506 1111 1111</li>
+                            <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
+                        </ul>
+                    </div>
+                    <div id="top-bar-center" class="col-md-3">
+                        <h:form>
                             <p:menubar>
-                                    <p:submenu label="Usuario">
-                                        <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion3()}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="index"></p:menuitem>
-                                    </p:submenu>
+                                <p:submenu label="Usuario">
+                                    <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.opcion3()}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.opcion3()}" outcome="index"></p:menuitem>
+                                </p:submenu>
                             </p:menubar>
-                    </h:form>
+                        </h:form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
         <!-- Comienzo del topbar-->
-        
+
         <!-- Fin del topbar-->
         <!--Comienzo del header-->
         <nav class="navbar navbar-expand-lg navbar-dark shadow-lg">
@@ -71,15 +71,20 @@
                     <div class="navbar-nav mx-5 text-center">
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
+
+
+                    <div class="navbar-nav mx-5 text-center">
+                        <a class="nav-item nav-link active" href="CarritoCompras.xhtml">Ver Carrito<span class="sr-only">(current)</span></a>
+                    </div>
                 </div>
-                <h:outputText value="3"/>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+                <h:outputText style="font-size: 25px; color: white;" value="#{beanPedido.objPedido.listaProductos.size()}"/>
                 <h:form>
-                    <h:commandButton value="Ver carrito" action="CarritoCompras.xhtml"/>
+                    <h:commandButton image="IMAGES/ICONS/carrito-de-compras_1.png" action="CarritoCompras.xhtml"/>
                 </h:form>
             </div>
-            
-         </nav>
+
+        </nav>
         <!--Fin del header-->
         <!--Comienzo del body-->
         <section>
@@ -114,11 +119,11 @@
         </section>
         <!--Fin del body-->
         <!--Comienzo footer-->
-    <div class="container-fluid pie-pagina">
-        <div class="container">
-            <div class="row justify-content-center text-center">© 2021 Revenger Inc.</div>
+        <div class="container-fluid pie-pagina">
+            <div class="container">
+                <div class="row justify-content-center text-center">© 2021 Revenger Inc.</div>
+            </div>
         </div>
-    </div>
         <!--Fin footer-->
     </h:body>
 </html>

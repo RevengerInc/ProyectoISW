@@ -71,11 +71,14 @@
                     <div class="navbar-nav mx-5 text-center">
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
+                    
+                     <div class="navbar-nav mx-5 text-center">
+                        <a class="nav-item nav-link active" href="CarritoCompras.xhtml">Ver Carrito<span class="sr-only">(current)</span></a>
+                    </div>
                 </div>
-                <h:outputText value="#{beanPedido.objPedido.listaProductos.size()}"/>
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <h:outputText style="font-size: 25px; color: white;" value="#{beanPedido.objPedido.listaProductos.size()}"/>
                 <h:form>
-                    <h:commandButton value="Ver carrito" action="CarritoCompras.xhtml"/>
+                    <h:commandButton image="IMAGES/ICONS/carrito-de-compras_1.png" action="CarritoCompras.xhtml"/>
                 </h:form>
             </div>
          </nav>
