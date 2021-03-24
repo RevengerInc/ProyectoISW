@@ -6,6 +6,7 @@
 package Model;
 
 
+import Controller.BeanProducto;
 import java.util.LinkedList;
 /**
  *
@@ -22,7 +23,27 @@ public class Pedido {
     }
     
     public void agregarProducto (Producto producto, int cantidad){
+        
+        for(int i = 0; i < listaProductos.size(); i++){
+            if(listaProductos.get(i).getProducto().getId().equals(producto.getId())){
+                listaProductos.get(i).setCantidadSolicita(listaProductos.get(i).getCantidadSolicita() + cantidad);
+                return;
+            }
+        }
         listaProductos.add(new ProductosCarrito(producto, cantidad));
+    }
+    
+    public void eliminarProducto (ProductosCarrito p){
+        for(int i = 0; i < listaProductos.size(); i++){
+            if(listaProductos.get(i).getProducto().getId().equals(p.getProducto().getId())){
+                p.getProducto().setCantidad(p.getProducto().getCantidad() + p.getCantidadSolicita());
+                listaProductos.remove(p);
+            }
+        }
+    }
+    
+    public void controlCantidad (Producto producto, int cantidadSolicita){
+        producto.setCantidad(producto.getCantidad() - cantidadSolicita);
     }
 
     public LinkedList<ProductosCarrito> getListaProductos() {

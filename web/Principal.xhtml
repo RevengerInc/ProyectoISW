@@ -74,11 +74,10 @@
                 </div>
             </div>
             
-            <h:outputText value="3"/>
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            <h:form>
-              <h:commandButton value="Ver carrito"/>
-            </h:form>
+            <h:outputText style="font-size: 25px; color: white;" value="#{beanPedido.objPedido.listaProductos.size()}"/>
+                <h:form>
+                    <h:commandButton image="IMAGES/ICONS/carrito-de-compras_1.png" action="CarritoCompras.xhtml"/>
+                </h:form>
          </nav>
         <!--Fin del header-->
         <!--Comienzo carrusel-->
