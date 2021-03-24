@@ -51,8 +51,12 @@ public class BeanUsuario implements Serializable {
         return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"index":"";
     }
     public String opcion3(){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"Bodega":"";
     }
+     public String opcion3(int n){
+        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"PrincipalBodega":"";
+    }
+    
     public String opcion4(){
         return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"":"";
     }
