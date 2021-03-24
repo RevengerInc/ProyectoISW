@@ -33,6 +33,18 @@ public class Factura {
         
     }
 
+    public Factura(Pedido pedido, Cliente cliente, EstadoFactura estado, LocalDate fechaPedido, TipoEnvio tipoEnvio, TipoVenta tipoVenta, Horario horario, String id) {
+        this.pedido = pedido;
+        this.cliente = cliente;
+        this.estado = estado;
+        this.fechaPedido = fechaPedido;
+        this.tipoEnvio = tipoEnvio;
+        this.tipoVenta = tipoVenta;
+        this.horario = horario;
+        this.id=id;
+    }
+    
+
     public EstadoFactura getEstado() {
         return estado;
     }

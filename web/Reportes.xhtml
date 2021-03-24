@@ -7,7 +7,7 @@
     <h:head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Historial</title>
+        <title>Reportes</title>
         
         <!-- Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
@@ -84,58 +84,93 @@
             <div class="container">
                 <div class="row">
                      <div class="card">
-                            <h5 class="p-mt-0">Historial de pedidos</h5>
+                            <h5 class="p-mt-0">Reportes</h5>
                             <p:tabView>
-                                <p:tab title="Pedido en camino">
+                                <p:tab title="Facturas en proceso">
                                     <div class="card">
                                     <h:form>
-                                        <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
-                                            <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
-                                                <h:outputText value="#{pedido.codFactura}"/>
+                                        <p:dataTable var="factura" value="#{beanReporte.listaEnProceso}">
+                                            <p:column headerText="Codigo factura" groupRow="true">
+                                                <h:outputText value="#{factura.id}"/>
                                             </p:column>
-                                            
+                                            <p:column headerText="Cliente">
+                                                <h:outputText value="#{factura.cliente.nombre}"/>
+                                            </p:column>
                                             <p:column headerText="Productos">
-                                                <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
-                                                    <p:column>
-                                                        <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
-                                                    </p:column>
-                                                    <p:column headerText="Nombre">
-                                                        <h:outputText value="#{producto.producto.nombre}"/>
-                                                    </p:column>
-                                                    <p:column headerText="Cantidad">
-                                                        <h:outputText value="#{producto.cantidadSolicita}"/>
-                                                    </p:column>
-                                                </p:dataTable>
+                                               <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>
                                 </div>
 
                                 </p:tab>
-                                <p:tab title="Pedidos finalizados">
+                                <p:tab title="Facturas Entregadas">
                                     <div class="card">
-                                        <h:form>
-                                            <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
-                                                <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
-                                                    <h:outputText value="#{pedido.codFactura}"/>
-                                                </p:column>
-
-                                                <p:column headerText="Productos">
-                                                    <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
-                                                        <p:column>
-                                                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
-                                                        </p:column>
-                                                        <p:column headerText="Nombre">
-                                                            <h:outputText value="#{producto.producto.nombre}"/>
-                                                        </p:column>
-                                                        <p:column headerText="Cantidad">
-                                                            <h:outputText value="#{producto.cantidadSolicita}"/>
-                                                        </p:column>
-                                                    </p:dataTable>
-                                                </p:column>
-                                            </p:dataTable>
-                                        </h:form>
-                                    </div>
+                                    <h:form>
+                                        <p:dataTable var="factura" value="#{beanReporte.listaEntregada}">
+                                            <p:column headerText="Codigo factura" groupRow="true">
+                                                <h:outputText value="#{factura.id}"/>
+                                            </p:column>
+                                            <p:column headerText="Cliente">
+                                                <h:outputText value="#{factura.cliente.nombre}"/>
+                                            </p:column>
+                                            <p:column headerText="Productos">
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                </p:tab>
+                                <p:tab title="Facturas Pendientes">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="factura" value="#{beanReporte.listaPendiente}">
+                                            <p:column headerText="Codigo factura" groupRow="true">
+                                                <h:outputText value="#{factura.id}"/>
+                                            </p:column>
+                                            <p:column headerText="Cliente">
+                                                <h:outputText value="#{factura.cliente.nombre}"/>
+                                            </p:column>
+                                            <p:column headerText="Productos">
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                </p:tab>
+                                <p:tab title="Facturas al contado">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="factura" value="#{beanReporte.listaContado}">
+                                            <p:column headerText="Codigo factura" groupRow="true">
+                                                <h:outputText value="#{factura.id}"/>
+                                            </p:column>
+                                            <p:column headerText="Cliente">
+                                                <h:outputText value="#{factura.cliente.nombre}"/>
+                                            </p:column>
+                                            <p:column headerText="Productos">
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                </p:tab>
+                                <p:tab title="Facturas credito">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="factura" value="#{beanReporte.listaCredito}">
+                                            <p:column headerText="Codigo factura" groupRow="true">
+                                                <h:outputText value="#{factura.id}"/>
+                                            </p:column>
+                                            <p:column headerText="Cliente">
+                                                <h:outputText value="#{factura.cliente.nombre}"/>
+                                            </p:column>
+                                            <p:column headerText="Productos">
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
                                 </p:tab>
                             </p:tabView>
                         </div>
