@@ -13,14 +13,15 @@ and open the template in the editor.
     background-color: antiquewhite;
 }
 
-.btnRegistrarse{
+.btnFinalizar{
     background-color: #D79031;
     height: 50px;
 }
 
-.btnRegistrarse:hover{
-    color: white;
+.btnFinalizar:hover{
+    
     transition: 0.4s;
     cursor: pointer;
     background-color: #bf1a2f;
+    color: white;
 }
