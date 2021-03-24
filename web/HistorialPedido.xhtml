@@ -47,8 +47,9 @@
                                         <p:separator/>
                                         <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
                                         <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="#{beanUsuario.opcion3(3)}"></p:menuitem>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}"></p:menuitem>
                                         <p:separator/>
+                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="index"></p:menuitem>
                                     </p:submenu>
                             </p:menubar>
                     </h:form>
@@ -70,10 +71,6 @@
                     <div class="navbar-nav mx-5 text-center">
                         <a class="nav-item nav-link active" href="ListaProducto.xhtml">Producto<span class="sr-only">(current)</span></a>
                     </div>
-                    
-                     <div class="navbar-nav mx-5 text-center">
-                        <a class="nav-item nav-link active" href="CarritoCompras.xhtml">Ver Carrito<span class="sr-only">(current)</span></a>
-                    </div>
                 </div>
                 <h:outputText style="font-size: 25px; color: white;" value="#{beanPedido.objPedido.listaProductos.size()}"/>
                 <h:form>
@@ -86,50 +83,62 @@
         <section class="py-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-sm-6 pb-2">
-                        <h:form>
-                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="width: 100%"/>
-                        </h:form>
-                        <br/>
-                        <br/>
-                    </div>
-                    <div class="col-lg-3 col-sm-3">
-                       
-                        <h:outputText value="#{beanProducto.producto.nombre}" id="nombreProducto"></h:outputText>
-                        
-                        <hr/>
-                        <h:outputText value="Precio:"></h:outputText>
-                        <h:outputText value=" $ #{beanProducto.producto.precio}" id="precioProducto"></h:outputText>
-                        <br/>
-                        <h:outputText value="Código: " class="titulosProducto"></h:outputText>
-                        <h:outputText value="#{beanProducto.producto.id}"></h:outputText>
-                        <br/>
-                        <h:outputText value="Categoría: " class="titulosProducto"></h:outputText>
-                        <h:outputText value="#{beanProducto.producto.categoria}"></h:outputText>
-                        <br/>
-                        <hr/>
-                        <h:outputText value="Descripción del producto: " class="titulosProducto"></h:outputText>
-                        <br/>
-                        <h:outputText value="#{beanProducto.producto.descripcion}"></h:outputText>
-                    </div>
-                    <div class="col-lg-3 col-sm-3">
-                        <h:outputText value="Cantidad: "></h:outputText>
-                        <h:outputText value="#{beanProducto.producto.cantidad}"></h:outputText>
-                        <br/>
-                        <h:outputText value="#{beanProducto.disponibilidad()}" style="color: #{beanProducto.color()}"></h:outputText>
-                        <br/>
-                       <h:form>
-                           <p:spinner value="#{beanPedido.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="1"/>
-                           <br/>
-                           <br/>
-                           <h:commandButton value="Comprar"></h:commandButton>
-                           <br/>
-                           <h:commandButton value="Agregar al carrito" actionListener="#{beanPedido.agregarProductoPedido(beanProducto.producto)}"></h:commandButton>
-                           <br/>
-                           <br/>
-                          <h:link value="Lista" outcome="ListaProducto"></h:link>
-                        </h:form> 
-                    </div>
+                     <div class="card">
+                            <h5 class="p-mt-0">Historial de pedidos</h5>
+                            <p:tabView>
+                                <p:tab title="Pedido en camino">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
+                                            <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
+                                                <h:outputText value="#{pedido.codFactura}"/>
+                                            </p:column>
+                                            
+                                            <p:column headerText="Productos">
+                                                <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
+                                                    <p:column>
+                                                        <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
+                                                    </p:column>
+                                                    <p:column headerText="Nombre">
+                                                        <h:outputText value="#{producto.producto.nombre}"/>
+                                                    </p:column>
+                                                    <p:column headerText="Cantidad">
+                                                        <h:outputText value="#{producto.cantidadSolicita}"/>
+                                                    </p:column>
+                                                </p:dataTable>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+
+                                </p:tab>
+                                <p:tab title="Pedidos finalizados">
+                                    <div class="card">
+                                        <h:form>
+                                            <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
+                                                <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
+                                                    <h:outputText value="#{pedido.codFactura}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Productos">
+                                                    <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
+                                                        <p:column>
+                                                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
+                                                        </p:column>
+                                                        <p:column headerText="Nombre">
+                                                            <h:outputText value="#{producto.producto.nombre}"/>
+                                                        </p:column>
+                                                        <p:column headerText="Cantidad">
+                                                            <h:outputText value="#{producto.cantidadSolicita}"/>
+                                                        </p:column>
+                                                    </p:dataTable>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </h:form>
+                                    </div>
+                                </p:tab>
+                            </p:tabView>
+                        </div>
                 </div>
             </div>
         </section>

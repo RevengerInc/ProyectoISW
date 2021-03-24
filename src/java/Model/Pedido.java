@@ -17,9 +17,11 @@ public class Pedido {
     private LinkedList<ProductosCarrito> listaProductos = new LinkedList<ProductosCarrito>();
     
     
-    
     public Pedido() {
         
+    }
+    public Pedido(LinkedList<ProductosCarrito> listaProductos) {
+        this.listaProductos= listaProductos;
     }
     
     public void agregarProducto (Producto producto, int cantidad){
