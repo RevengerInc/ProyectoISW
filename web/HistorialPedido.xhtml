@@ -96,7 +96,7 @@
                                 <p:tab title="Pedido en camino">
                                     <div class="card">
                                     <h:form>
-                                        <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
+                                        <p:dataTable var="pedido" value="#{beanHistorial.listaProcesando}">
                                             <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
                                                 <h:outputText value="#{pedido.codFactura}"/>
                                             </p:column>
@@ -104,7 +104,7 @@
                                             <p:column headerText="Productos">
                                                 <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
                                                     <p:column>
-                                                        <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
+                                                        <h:graphicImage value="#{producto.producto.imagen}" style="max-width: 25%"></h:graphicImage>
                                                     </p:column>
                                                     <p:column headerText="Nombre">
                                                         <h:outputText value="#{producto.producto.nombre}"/>
@@ -122,15 +122,16 @@
                                 <p:tab title="Pedidos finalizados">
                                     <div class="card">
                                         <h:form>
-                                            <p:dataTable var="pedido" value="#{beanHistorial.listaH}">
+                                            <p:dataTable var="pedido" value="#{beanHistorial.listaEntregados}">
                                                 <p:column headerText="Codigo pedido" groupRow="true" style="width: 15%">
                                                     <h:outputText value="#{pedido.codFactura}"/>
                                                 </p:column>
 
                                                 <p:column headerText="Productos">
                                                     <p:dataTable var="producto" value="#{beanHistorial.obtenerListaProductos(pedido.codFactura)}">
+                                                        <f:facet name="header">Lista de Productos</f:facet>
                                                         <p:column>
-                                                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 25%"></h:graphicImage>
+                                                            <h:graphicImage value="#{producto.producto.imagen}" style="max-width: 25%"></h:graphicImage>
                                                         </p:column>
                                                         <p:column headerText="Nombre">
                                                             <h:outputText value="#{producto.producto.nombre}"/>

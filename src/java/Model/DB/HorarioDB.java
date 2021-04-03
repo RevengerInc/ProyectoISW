@@ -5,7 +5,17 @@
  */
 package Model.DB;
 
+import DAO.AccesoDatos;
+import DAO.SNMPExceptions;
+import Model.Enums.EstadoFactura;
+import Model.Enums.TipoEnvio;
+import Model.Enums.TipoVenta;
+import Model.Factura;
 import Model.Horario;
+import Model.Pedido;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 /**
@@ -14,12 +24,33 @@ import java.util.LinkedList;
  */
 public class HorarioDB {
     private LinkedList<Horario> listaHorarios = new LinkedList<>();
-    public LinkedList<Horario> obtenerHorarios (){
-        listaHorarios.add(new Horario(1,"8:00"));
-        listaHorarios.add(new Horario(2,"12:00"));
-        listaHorarios.add(new Horario(3,"16:00"));
-        listaHorarios.add(new Horario(4,"18:00"));
-        
-        return listaHorarios;
+    public LinkedList<Horario> obtenerHorarios () throws SNMPExceptions{
+        String select = "";
+          
+          try {
+              //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos= new AccesoDatos();
+            
+            //Se crea la sentencia de Busqueda
+            select="EXEC PA_ConsultarHorarios";
+                    
+            //se ejecuta la sentencia sql
+            ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
+            //se llama el array con los proyectos  
+              while (rsPA.next()) {
+                listaHorarios.add(new Horario(rsPA.getString("Id"), rsPA.getString("Horas")));
+              }
+              rsPA.close();
+              
+         } catch (SQLException e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage(), e.getErrorCode());
+          }catch (Exception e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage());
+          } finally {
+              
+          }
+          return listaHorarios;
     }
 }

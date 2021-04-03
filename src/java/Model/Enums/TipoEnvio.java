@@ -11,7 +11,6 @@ package Model.Enums;
  */
 public enum TipoEnvio {
     EnvioDirecto,
-    PersonalEmpresa,
-    SinEnvio,
+    Presencial,
     Encomienda
 }

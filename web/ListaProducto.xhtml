@@ -101,13 +101,10 @@
                         <p:dataTable var="car" value="#{beanProducto.listaP}">
                             <f:facet name="header">Lista de Productos</f:facet>
                             <p:column headerText="Foto">
-                                <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 50%"></h:graphicImage>
+                                <h:graphicImage value="#{car.imagen}" style="max-width: 100%"></h:graphicImage>
                             </p:column>
                             <p:column headerText="Producto">
                                 #{car.nombre}
-                            </p:column>
-                            <p:column headerText="Descripción">
-                                #{car.descripcion}
                             </p:column>
                             <p:column headerText="Cantidad">
                                 #{car.cantidad}
@@ -117,7 +114,7 @@
                             </p:column>
                             //more columns
                             <f:facet name="footer">
-                                In total there are cars.
+                                #{beanProducto.error}
                             </f:facet>
                         </p:dataTable>
                     </h:form>

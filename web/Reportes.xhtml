@@ -93,7 +93,7 @@
                      <div class="card">
                             <h5 class="p-mt-0">Reportes</h5>
                             <p:tabView>
-                                <p:tab title="Facturas en proceso">
+                                <p:tab title="Facturas En Proceso">
                                     <div class="card">
                                     <h:form>
                                         <p:dataTable var="factura" value="#{beanReporte.listaEnProceso}">
@@ -104,14 +104,14 @@
                                                 <h:outputText value="#{factura.cliente.nombre}"/>
                                             </p:column>
                                             <p:column headerText="Productos">
-                                               <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos(factura.pedido.listaProductos)}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>
                                 </div>
 
                                 </p:tab>
-                                <p:tab title="Facturas Entregadas">
+                                <p:tab title="Facturas Finalizadas">
                                     <div class="card">
                                     <h:form>
                                         <p:dataTable var="factura" value="#{beanReporte.listaEntregada}">
@@ -122,7 +122,7 @@
                                                 <h:outputText value="#{factura.cliente.nombre}"/>
                                             </p:column>
                                             <p:column headerText="Productos">
-                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos(factura.pedido.listaProductos)}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>
@@ -139,7 +139,7 @@
                                                 <h:outputText value="#{factura.cliente.nombre}"/>
                                             </p:column>
                                             <p:column headerText="Productos">
-                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos(factura.pedido.listaProductos)}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>
@@ -156,7 +156,7 @@
                                                 <h:outputText value="#{factura.cliente.nombre}"/>
                                             </p:column>
                                             <p:column headerText="Productos">
-                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos(factura.pedido.listaProductos)}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>
@@ -173,7 +173,7 @@
                                                 <h:outputText value="#{factura.cliente.nombre}"/>
                                             </p:column>
                                             <p:column headerText="Productos">
-                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos()}"/>
+                                                <h:inputTextarea style="width:100%" value="#{beanReporte.obtenerListaProductos(factura.pedido.listaProductos)}"/>
                                             </p:column>
                                         </p:dataTable>
                                     </h:form>

@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-6 pb-2">
                         <h:form>
-                            <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="width: 100%"/>
+                            <h:graphicImage value="#{beanProducto.producto.imagen}" style="width: 100%"/>
                         </h:form>
                         <br/>
                         <br/>
@@ -107,13 +107,13 @@
                         
                         <hr/>
                         <h:outputText value="Precio:"></h:outputText>
-                        <h:outputText value=" $ #{beanProducto.producto.precio}" id="precioProducto"></h:outputText>
+                        <h:outputText value=" ₡ #{beanProducto.producto.precio}" id="precioProducto"></h:outputText>
                         <br/>
                         <h:outputText value="Código: " class="titulosProducto"></h:outputText>
                         <h:outputText value="#{beanProducto.producto.id}"></h:outputText>
                         <br/>
-                        <h:outputText value="Categoría: " class="titulosProducto"></h:outputText>
-                        <h:outputText value="#{beanProducto.producto.categoria}"></h:outputText>
+                        <h:outputText value="Cantidad mínima de compra: " class="titulosProducto"></h:outputText>
+                        <h:outputText value="#{beanProducto.producto.minimo}"></h:outputText>
                         <br/>
                         <hr/>
                         <h:outputText value="Descripción del producto: " class="titulosProducto"></h:outputText>
@@ -127,15 +127,15 @@
                         <h:outputText value="#{beanProducto.disponibilidad()}" style="color: #{beanProducto.color()}"></h:outputText>
                         <br/>
                        <h:form>
-                           <p:spinner value="#{beanPedido.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="1"/>
+                           <p:spinner value="#{beanPedido.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="#{beanProducto.producto.minimo}"/>
                            <br/>
                            <br/>
-                           <h:commandButton value="Comprar"></h:commandButton>
+                           <h:commandButton value="Comprar" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
                            <br/>
-                           <h:commandButton value="Agregar al carrito" actionListener="#{beanPedido.agregarProductoPedido(beanProducto.producto)}"></h:commandButton>
+                           <h:commandButton value="Agregar al carrito" actionListener="#{beanPedido.agregarProductoPedido(beanProducto.producto)}" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
                            <br/>
                            <br/>
-                          <h:link value="Lista" outcome="ListaProducto"></h:link>
+                          <h:link value="Regresar a la lista" outcome="ListaProducto"></h:link>
                         </h:form> 
                     </div>
                 </div>

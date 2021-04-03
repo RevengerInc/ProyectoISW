@@ -17,7 +17,9 @@ public class Cliente extends Usuario{
         super(nombre, tipoUsuario, cedula, telefono, correoID);
     }
     
-    
+    public Cliente() {
+        super();
+    }
     
  
 }

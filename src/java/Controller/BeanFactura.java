@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
 import Model.DB.FacturaDB;
 import Model.DB.HorarioDB;
 import Model.Enums.EstadoFactura;
@@ -16,6 +17,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,11 +62,16 @@ public class BeanFactura implements Serializable {
     }
     
     public LinkedList<Horario> mostrarHorarios(){
-        return horarioDB.obtenerHorarios();
+        try {
+            return horarioDB.obtenerHorarios();
+        } catch (SNMPExceptions ex) {
+            Logger.getLogger(BeanFactura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public String completarPedido(Factura f){
-        this.factura.setEstado(EstadoFactura.Entregado);
+        this.factura.setEstado(EstadoFactura.Finalizado);
         return "PrincipalBodega";
     }
     

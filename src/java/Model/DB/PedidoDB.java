@@ -30,13 +30,13 @@ public class PedidoDB {
           try {
                
                               
-                listaProductos1.add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-                listaProductos1.add(new ProductosCarrito(new Producto("nfdlal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-                listaProductos1.add(new ProductosCarrito(new Producto("nfslal433", "Red Watch", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, 1, 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("nfdlal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, 1, 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("nfslal433", "Red Watch", "Product Description", "black-watch.jpg", 72, 1, 61),5));
 
-                listaProductos1.add(new ProductosCarrito(new Producto("nhglal433", "Black Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-                listaProductos1.add(new ProductosCarrito(new Producto("ndslal433", "Blue Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
-                listaProductos1.add(new ProductosCarrito(new Producto("ngflal433", "Red Watch2", "Product Description", "black-watch.jpg", 72, "Accessories", 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("nhglal433", "Black Watch2", "Product Description", "black-watch.jpg", 72, 1, 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("ndslal433", "Blue Watch2", "Product Description", "black-watch.jpg", 72, 1, 61),5));
+                listaProductos1.add(new ProductosCarrito(new Producto("ngflal433", "Red Watch2", "Product Description", "black-watch.jpg", 72, 1, 61),5));
                 
                 
                 pedido1.setListaProductos(listaProductos1);

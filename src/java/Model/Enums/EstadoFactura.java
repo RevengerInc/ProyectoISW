@@ -11,6 +11,6 @@ package Model.Enums;
  */
 public enum EstadoFactura {
     Pendiente,
-    Entregado,
+    Finalizado,
     EnProceso
 }

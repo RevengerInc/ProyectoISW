@@ -21,17 +21,17 @@ public class Producto {
 
     private double precio;
 
-    private String categoria;
+    private int minimo;
 
     private int cantidad;
 
-    public Producto(String id, String nombre, String descripcion, String imagen, double precio, String categoria, int cantidad) {
+    public Producto(String id, String nombre, String descripcion, String imagen, double precio, int cantidad, int minimo) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.precio = precio;
-        this.categoria = categoria;
+        this.minimo = minimo;
         this.cantidad = cantidad;
     }
 
@@ -80,20 +80,20 @@ public class Producto {
         this.precio = precio;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public int getMinimo() {
+        return minimo;
+    }
+
+    public void setMinimo(int minimo) {
+        this.minimo = minimo;
     }
     
     

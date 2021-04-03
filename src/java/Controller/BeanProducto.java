@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
 import Model.Producto;
 import Model.DB.ProductoDB;
 import Model.Pedido;
@@ -12,6 +13,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,10 +30,15 @@ public class BeanProducto implements Serializable {
     private ProductoDB productoDB= new ProductoDB();
     LinkedList<Producto> listaP = new LinkedList<Producto>();
     private Producto producto= new Producto();
+    private String error="";
     
     
     public BeanProducto() {
-        listaP=productoDB.moTodo();
+        try {
+            listaP=productoDB.moTodo();
+        } catch (SNMPExceptions ex) {
+            error=ex.getMensajeParaDesarrollador();
+        }
     }
 
     public LinkedList<Producto> getListaP() {
@@ -69,6 +77,14 @@ public class BeanProducto implements Serializable {
 
     public void setProductoDB(ProductoDB productoDB) {
         this.productoDB = productoDB;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
     
     

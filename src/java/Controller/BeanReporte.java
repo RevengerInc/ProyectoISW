@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
 import Model.DB.HistorialDB;
 import Model.DB.ReporteDB;
 import Model.Enums.EstadoFactura;
@@ -15,6 +16,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,13 +36,18 @@ public class BeanReporte implements Serializable {
     private LinkedList<Factura> listaEntregada = new LinkedList<Factura>();
     private LinkedList<Factura> listaCredito = new LinkedList<Factura>();
     private LinkedList<Factura> listaContado = new LinkedList<Factura>();
+    private String error="";
     
     public BeanReporte() {
-        this.listaEnProceso=reporteDB.reportesPorEstado(EstadoFactura.EnProceso);
-        this.listaPendiente=reporteDB.reportesPorEstado(EstadoFactura.Pendiente);
-        this.listaEntregada=reporteDB.reportesPorEstado(EstadoFactura.Entregado);
-        this.listaContado=reporteDB.reportesPorTipoVentaContado();
-        this.listaCredito=reporteDB.reportesPorTipoVentaCredito();
+        try {
+            this.listaEnProceso=reporteDB.reportesPorEstado("E");
+            this.listaPendiente=reporteDB.reportesPorEstado("P");
+            this.listaEntregada=reporteDB.reportesPorEstado("F");
+            this.listaContado=reporteDB.reportesPorTipoVenta("CON");
+            this.listaCredito=reporteDB.reportesPorTipoVenta("CRE");
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
     }
     
    
@@ -60,20 +68,23 @@ public class BeanReporte implements Serializable {
         this.listaPendiente = listaPendiente;
     }
     
-    public LinkedList<Factura> obtenerListaFacturas(EstadoFactura estado){
+    public void obtenerListaFacturas(EstadoFactura estado){
+        try {
         switch (estado) {
             case EnProceso:
-                listaEnProceso=reporteDB.reportesPorEstado(estado);
+                listaEnProceso=reporteDB.reportesPorEstado("E");
                 break;
-            case Entregado:
-                listaEntregada=reporteDB.reportesPorEstado(estado);
+            case Finalizado:
+                listaEntregada=reporteDB.reportesPorEstado("F");
                 break;
             default:
-                listaPendiente=reporteDB.reportesPorEstado(estado);
+                listaPendiente=reporteDB.reportesPorEstado("P");
                 break;
         }
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
         
-        return reporteDB.reportesPorEstado(estado);
     }
 
     public LinkedList<Factura> getListaEnProceso() {
@@ -107,15 +118,12 @@ public class BeanReporte implements Serializable {
     public void setListaContado(LinkedList<Factura> listaContado) {
         this.listaContado = listaContado;
     }
-    
-
-    public String obtenerListaProductos(){
+    public String obtenerListaProductos(LinkedList<ProductosCarrito> lista){
         String listaProductos="";
-        for (Factura factura : listaPendiente) {
-            for (ProductosCarrito producto : factura.getPedido().getListaProductos()) {
+            for (ProductosCarrito producto : lista) {
                 listaProductos+=producto.getCantidadSolicita()+" x "+producto.getProducto().getId()+" "+producto.getProducto().getNombre()+"\n";
             }
-        }
+        
         return listaProductos;
     }
 }

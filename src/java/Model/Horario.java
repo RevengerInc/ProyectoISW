@@ -6,10 +6,10 @@
 package Model;
 
 public class Horario {
-    private int id;
+    private String id;
     private String hora;
 
-    public Horario(int id, String hora) {
+    public Horario(String id, String hora) {
         this.id = id;
         this.hora = hora;
     }
