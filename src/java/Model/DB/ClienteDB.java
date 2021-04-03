@@ -22,7 +22,7 @@ import java.util.LinkedList;
 public class ClienteDB {
     
     public Cliente obtenerCliente(){
-        return new Cliente("Fabian Espinoza", TipoUsuario.Cliente, "118110563","88888888","fabian16viquez@gmail.com");
+        return new Cliente("Fabian Espinoza", TipoUsuario.Cliente, "118110563","88888888","fabian16viquez@gmail.com","A");
     }
     public Cliente obtenerClientePorID(String correo)throws SNMPExceptions{
       String select = "";
@@ -39,7 +39,7 @@ public class ClienteDB {
             ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
               while (rsPA.next()) {
-                  cliente= new Cliente(rsPA.getString("NOMBRE"), rsPA.getString("IDTIPOUSUARIO").equals("C")?TipoUsuario.Cliente:rsPA.getString("IDTIPOUSUARIO").equals("B")?TipoUsuario.Bodeguero:TipoUsuario.Administrador, rsPA.getString("CEDULA"), rsPA.getString("TELEFONO"), correo);
+                  cliente= new Cliente(rsPA.getString("NOMBRE"), rsPA.getString("IDTIPOUSUARIO").equals("C")?TipoUsuario.Cliente:rsPA.getString("IDTIPOUSUARIO").equals("B")?TipoUsuario.Bodeguero:TipoUsuario.Administrador, rsPA.getString("CEDULA"), rsPA.getString("TELEFONO"), correo, rsPA.getString("ESTADO"));
                 }
               rsPA.close();
               

@@ -17,13 +17,15 @@ public class Usuario {
     private String cedula;
     private String telefono;
     private String correoID;
-
-    public Usuario(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID) {
+    private String estado;
+    
+    public Usuario(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID, String estado) {
         this.nombre = nombre;
         this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
         this.telefono = telefono;
         this.correoID = correoID;
+        this.estado = estado;
     }
 
     public Usuario() {
@@ -57,6 +59,15 @@ public class Usuario {
         return telefono;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
