@@ -31,11 +31,11 @@
                         <h:form>
                             <div class="form-group">
                                 <label for="correoElectronico">Correo Electrónico</label>
-                                <h:inputText class="form-control" id="correoElectronico"></h:inputText>
+                                <h:inputText class="form-control" id="correoElectronico" value="#{loginControlador.correoIngresado}"></h:inputText>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="contrasena">Contraseña</label>
-                                <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
+                                <h:inputSecret class="form-control" id="contrasena" value="#{loginControlador.contrasennia}"> </h:inputSecret>
                             </div>
                             
                             
@@ -43,8 +43,8 @@
                                 <span class="ml-auto"><a href="#" >Olvidé mi contraseña</a></span> 
                             </div>
                             
-                            <h:commandButton value="Ingresar" class="btn btn-block py-2 botonIngresoLogin" action="Principal.xhtml"></h:commandButton> 
-
+                            <h:commandButton value="Ingresar" class="btn btn-block py-2 botonIngresoLogin" action="#{loginControlador.autenticar()}"></h:commandButton> 
+                            <h:outputLabel value="#{loginControlador.error}"/>
                             <hr></hr>
                             <h5 align="center" class="pt-3">¿Aún no te has registrado?</h5>
                             

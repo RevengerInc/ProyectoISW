@@ -62,17 +62,18 @@
                                     <div class="form-group">
                                         <label for="Provincia"> Provincia <img src="IMAGES/ICONS/mapa.png"></img></label>
                                         <br></br>
-                                        <h:selectOneMenu label="provincias" onchange="submit()" value="#{beanRegistroC.provinciaUsuario}">
+                                        <p:selectOneMenu label="provincias" onchange="submit()" value="#{beanRegistroC.provinciaUsuario}">
                                             <f:selectItems  value="#{beanRegistroC.moTodoProvincias()}"></f:selectItems>
-                                        </h:selectOneMenu>
+                                            <p:ajax event="itemSelect" update="comboCanton"/>
+                                        </p:selectOneMenu>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cantón"> Cantón <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
-                                        <h:selectOneMenu  id="comboCanton" label="canton" onchange="submit()" value="#{beanRegistroC.cantonUsuario}">
+                                        <p:selectOneMenu  id="comboCanton" label="canton" onchange="submit()" value="#{beanRegistroC.cantonUsuario}">
                                             <f:selectItems value="#{beanRegistroC.moTodoCantones()}"></f:selectItems>
-                                        </h:selectOneMenu>
+                                        </p:selectOneMenu>
                                     </div>
 
                                     <div class="form-group">
@@ -109,7 +110,7 @@
                                 <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 
 
                             </div>
-
+                            <h:outputLabel value="#{beanRegistroC.provinciaUsuario}"/>
 
 
 

@@ -58,8 +58,8 @@ public class BeanRegistroC implements Serializable {
     public LinkedList<Canton> moTodoCantones() {
         LinkedList<Canton> listaCantones = new LinkedList<>();
         try {
-            if (true) {
-                listaCantones = cantonDB.moTodo(2);
+            if (provinciaUsuario!=null) {
+                listaCantones = cantonDB.moTodo(provinciaUsuario.getCodProvincia());
             }
 
         } catch (SNMPExceptions ex) {
