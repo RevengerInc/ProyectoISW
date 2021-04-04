@@ -29,10 +29,10 @@ import javax.swing.JOptionPane;
 @SessionScoped
 public class BeanRegistroC implements Serializable {
 
-    private Provincia provinciaUsuario;
-    private Canton cantonUsuario;
-    private Distrito distritoUsuario;
-    private Barrio barrioUsuario;
+    private int provinciaUsuario;
+    private int cantonUsuario;
+    private int distritoUsuario;
+    private int barrioUsuario;
 
     private ProvinciaDB provinciaDB = new ProvinciaDB();
     private CantonDB cantonDB = new CantonDB();
@@ -44,8 +44,8 @@ public class BeanRegistroC implements Serializable {
     public BeanRegistroC() {
     }
 
-    public LinkedList<Provincia> moTodoProvincias() {
-        LinkedList<Provincia> listaProvincias = new LinkedList<>();
+    public LinkedList<SelectItem> moTodoProvincias() {
+        LinkedList<SelectItem> listaProvincias = new LinkedList<>();
         try {
             listaProvincias = provinciaDB.moTodo();
         } catch (SNMPExceptions ex) {
@@ -55,11 +55,14 @@ public class BeanRegistroC implements Serializable {
         return listaProvincias;
     }
 
-    public LinkedList<Canton> moTodoCantones() {
-        LinkedList<Canton> listaCantones = new LinkedList<>();
+    public LinkedList<SelectItem> moTodoCantones() {
+        LinkedList<SelectItem> listaCantones = new LinkedList<>();
         try {
-            if (provinciaUsuario!=null) {
-                listaCantones = cantonDB.moTodo(provinciaUsuario.getCodProvincia());
+
+
+            if (provinciaUsuario != 0) {
+                listaCantones = cantonDB.moTodo(provinciaUsuario);
+
             }
 
         } catch (SNMPExceptions ex) {
@@ -69,38 +72,65 @@ public class BeanRegistroC implements Serializable {
         return listaCantones;
     }
 
-    public Provincia getProvinciaUsuario() {
+    public LinkedList<SelectItem> moTodoDistritos() {
+        LinkedList<SelectItem> listaDistritos = new LinkedList<>();
+        try {
+            if (provinciaUsuario != 0 && cantonUsuario != 0) {
+                listaDistritos = distritoDB.moTodo(provinciaUsuario, cantonUsuario);
+            }
+
+        } catch (SNMPExceptions ex) {
+            error = ex.getMensajeParaDesarrollador();
+        }
+
+        return listaDistritos;
+    }
+    
+    public LinkedList<SelectItem> moTodoBarrios() {
+        LinkedList<SelectItem> listaBarrios = new LinkedList<>();
+        try {
+            if (provinciaUsuario != 0 && cantonUsuario != 0 && distritoUsuario != 0) {
+                listaBarrios = barrioDB.moTodo(provinciaUsuario, cantonUsuario, distritoUsuario);
+            }
+
+        } catch (SNMPExceptions ex) {
+            error = ex.getMensajeParaDesarrollador();
+        }
+
+        return listaBarrios;
+    }
+    
+    public int getProvinciaUsuario() {
         return provinciaUsuario;
     }
 
-    public void setProvinciaUsuario(Provincia provinciaUsuario) {
+    public void setProvinciaUsuario(int provinciaUsuario) {
         this.provinciaUsuario = provinciaUsuario;
     }
 
-    public Canton getCantonUsuario() {
+    public int getCantonUsuario() {
         return cantonUsuario;
     }
 
-    public void setCantonUsuario(Canton cantonUsuario) {
+    public void setCantonUsuario(int cantonUsuario) {
         this.cantonUsuario = cantonUsuario;
     }
 
-    public Distrito getDistritoUsuario() {
+    public int getDistritoUsuario() {
         return distritoUsuario;
     }
 
-    public void setDistritoUsuario(Distrito distritoUsuario) {
+    public void setDistritoUsuario(int distritoUsuario) {
         this.distritoUsuario = distritoUsuario;
     }
 
-    public Barrio getBarrioUsuario() {
+    public int getBarrioUsuario() {
         return barrioUsuario;
     }
 
-    public void setBarrioUsuario(Barrio barrioUsuario) {
+    public void setBarrioUsuario(int barrioUsuario) {
         this.barrioUsuario = barrioUsuario;
     }
-
 
     public ProvinciaDB getProvinciaDB() {
         return provinciaDB;

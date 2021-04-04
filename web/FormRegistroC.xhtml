@@ -32,7 +32,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nombre">Nombre <img src="IMAGES/ICONS/Cliente.png"></img></label>
-                                        <h:inputText class="form-control" id="nombre"></h:inputText>
+                                        <h:inputText required="true" requiredMessage="Debe de ingresar su nombre" class="form-control" id="nombre"></h:inputText>
                                     </div>
 
                                     <div class="form-group">
@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                         <label for="Provincia"> Provincia <img src="IMAGES/ICONS/mapa.png"></img></label>
                                         <br></br>
-                                        <p:selectOneMenu label="provincias" onchange="submit()" value="#{beanRegistroC.provinciaUsuario}">
+                                        <p:selectOneMenu id="comboProvincia" label="provincias" onchange="submit()" value="#{beanRegistroC.provinciaUsuario}">
                                             <f:selectItems  value="#{beanRegistroC.moTodoProvincias()}"></f:selectItems>
                                             <p:ajax event="itemSelect" update="comboCanton"/>
                                         </p:selectOneMenu>
@@ -73,23 +73,25 @@
                                         <br></br>
                                         <p:selectOneMenu  id="comboCanton" label="canton" onchange="submit()" value="#{beanRegistroC.cantonUsuario}">
                                             <f:selectItems value="#{beanRegistroC.moTodoCantones()}"></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboDistrito"/>
                                         </p:selectOneMenu>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Distrito"> Distrito <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
-                                        <h:selectOneMenu label="Distrito" onchange="submit()" value="#{beanRegistroC.distritoUsuario}">
-                                            
-                                        </h:selectOneMenu>
+                                        <p:selectOneMenu id="comboDistrito" label="Distrito" onchange="submit()" value="#{beanRegistroC.distritoUsuario}">
+                                            <f:selectItems value="#{beanRegistroC.moTodoDistritos()}"></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboBarrio"/>
+                                        </p:selectOneMenu>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Barrio"> Barrio <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
-                                        <h:selectOneMenu label="Barrio" onchange="submit()" value="#{beanRegistroC.barrioUsuario}">
-                                            
-                                        </h:selectOneMenu>
+                                        <p:selectOneMenu id="comboBarrio" label="Barrio" onchange="submit()" value="#{beanRegistroC.barrioUsuario}">
+                                            <f:selectItems value="#{beanRegistroC.moTodoBarrios()}"></f:selectItems>
+                                        </p:selectOneMenu>
                                     </div>
 
                                     <div class="form-group">
@@ -101,10 +103,15 @@
                                 </div>
 
                             </div>
-
-                            <h:commandButton value="Registrarme" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
-
                             <br></br>
+                            
+                            <div align="center">
+                                <h:outputLabel class=" text-danger" value="hola"></h:outputLabel>
+                            </div>
+                            
+                            <h:commandButton value="Registrarme" class="btn btn-block mt-3 btnRegistrarse" onclick="submit()" action="#"></h:commandButton> 
+
+                            
 
                             <div class="d-sm-flex mb-3 align-items-center">
                                 <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 

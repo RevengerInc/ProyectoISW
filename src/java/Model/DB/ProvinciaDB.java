@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -27,9 +28,9 @@ public class ProvinciaDB {
         accesoDatos.setDbConn(conn);
     }
     
-    public  LinkedList<Provincia> moTodo() throws SNMPExceptions{
+    public  LinkedList<SelectItem> moTodo() throws SNMPExceptions{
       String select = "";
-      LinkedList<Provincia> listaProvincias = new LinkedList<Provincia>();
+      LinkedList<SelectItem> listaProvincias = new LinkedList<SelectItem>();
           
           try {
               //Se intancia la clase de acceso a datos
@@ -42,7 +43,7 @@ public class ProvinciaDB {
             ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
               while (rsPA.next()) {
-                listaProvincias.add(new Provincia(rsPA.getInt("ID"),rsPA.getString("NOMBRE"),rsPA.getInt("ACTIVO")));
+                listaProvincias.add(new SelectItem(rsPA.getInt("ID"), rsPA.getString("NOMBRE")));
               }
               rsPA.close();
               
