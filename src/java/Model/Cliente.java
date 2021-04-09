@@ -13,8 +13,8 @@ import Model.Enums.TipoUsuario;
  */
 public class Cliente extends Usuario{
 
-    public Cliente(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID, String estado) {
-        super(nombre, tipoUsuario, cedula, telefono, correoID, estado);
+    public Cliente(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID, String estado, String password) {
+        super(nombre, tipoUsuario, cedula, telefono, correoID, estado, password);
     }
     
     public Cliente() {

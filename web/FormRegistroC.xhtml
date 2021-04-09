@@ -32,27 +32,28 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nombre">Nombre <img src="IMAGES/ICONS/Cliente.png"></img></label>
-                                        <h:inputText required="true" requiredMessage="Debe de ingresar su nombre" class="form-control" id="nombre"></h:inputText>
+                                        <h:inputText value="#{beanRegistroC.nombre}" class="form-control" id="nombre"></h:inputText>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="telefono">Télefono <img src="IMAGES/ICONS/telefono.png"></img></label>
-                                        <h:inputText class="form-control" id="telefono"></h:inputText>
+                                        <h:inputText class="form-control" value="#{beanRegistroC.telefono}" id="telefono"></h:inputText>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="cedula">Cédula <img src="IMAGES/ICONS/identificacion.png"></img></label>
-                                        <h:inputText class="form-control" id="cedula"></h:inputText>
+                                        <h:inputText class="form-control" value="#{beanRegistroC.cedula}" id="cedula"></h:inputText>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="correoElectronico">Correo Electrónico <img src="IMAGES/ICONS/email.png"></img></label>
-                                        <h:inputText class="form-control" id="correoElectronico"></h:inputText>
+                                        <h:inputText class="form-control" value="#{beanRegistroC.correo}" id="correoElectronico"></h:inputText>
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="contrasena">Contraseña <img src="IMAGES/ICONS/contrasena.png"></img></label>
-                                        <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
+                                        <br></br>
+                                        <p:password id="toggle" value="#{beanRegistroC.password}" redisplay="true"/>
                                     </div>
                                 </div>
 
@@ -72,6 +73,7 @@
                                         <label for="Cantón"> Cantón <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
                                         <p:selectOneMenu  id="comboCanton" label="canton" onchange="submit()" value="#{beanRegistroC.cantonUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="CANTON NO ESPECIFICADO"></f:selectItem>
                                             <f:selectItems value="#{beanRegistroC.moTodoCantones()}"></f:selectItems>
                                             <p:ajax event="itemSelect" update="comboDistrito"/>
                                         </p:selectOneMenu>
@@ -81,6 +83,7 @@
                                         <label for="Distrito"> Distrito <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
                                         <p:selectOneMenu id="comboDistrito" label="Distrito" onchange="submit()" value="#{beanRegistroC.distritoUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="DISTRITO NO ESPECIFICADO"></f:selectItem>
                                             <f:selectItems value="#{beanRegistroC.moTodoDistritos()}"></f:selectItems>
                                             <p:ajax event="itemSelect" update="comboBarrio"/>
                                         </p:selectOneMenu>
@@ -90,6 +93,7 @@
                                         <label for="Barrio"> Barrio <img src="IMAGES/ICONS/check.png"></img></label>
                                         <br></br>
                                         <p:selectOneMenu id="comboBarrio" label="Barrio" onchange="submit()" value="#{beanRegistroC.barrioUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="BARRIO NO ESPECIFICADO"></f:selectItem>
                                             <f:selectItems value="#{beanRegistroC.moTodoBarrios()}"></f:selectItems>
                                         </p:selectOneMenu>
                                     </div>
@@ -97,31 +101,26 @@
                                     <div class="form-group">
                                         <label for="Barrio"> Otras señas</label>
                                         <br></br>
-                                        <h:inputTextarea cols="30"></h:inputTextarea>
+                                        <h:inputTextarea cols="30" value="#{beanRegistroC.otrasSenas}"></h:inputTextarea>
                                     </div>
 
                                 </div>
 
                             </div>
                             <br></br>
-                            
-                            <div align="center">
-                                <h:outputLabel class=" text-danger" value="hola"></h:outputLabel>
-                            </div>
-                            
-                            <h:commandButton value="Registrarme" class="btn btn-block mt-3 btnRegistrarse" onclick="submit()" action="#"></h:commandButton> 
 
-                            
+                            <div align="center">
+                                <h:outputLabel class=" text-danger" value="#{beanRegistroC.mensaje}"></h:outputLabel>
+                            </div>
+
+                            <h:commandButton value="Registrarme" class="btn btn-block mt-3 btnRegistrarse" onclick="submit()" actionListener="#{beanRegistroC.registrarse()}"></h:commandButton> 
+                            <h:commandButton value="Regresar" action="Principal.xhtml" class="btn btn-block mt-3 mb-3 btnRegresar" ></h:commandButton>
+
 
                             <div class="d-sm-flex mb-3 align-items-center">
                                 <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 
 
                             </div>
-                            <h:outputLabel value="#{beanRegistroC.provinciaUsuario}"/>
-
-
-
-
                         </h:form>
                     </div>
                 </div>

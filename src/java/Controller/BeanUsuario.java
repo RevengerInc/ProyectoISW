@@ -27,7 +27,7 @@ public class BeanUsuario implements Serializable {
     private Usuario usuario = new Usuario();
     public BeanUsuario() {
         
-        usuario.setTipoUsuario(TipoUsuario.NoIngresado);
+        usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
     }
     
 
@@ -39,26 +39,26 @@ public class BeanUsuario implements Serializable {
         this.usuario = usuario;
     }
     public String opcion1(){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"Registrarse":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Registrarse":"";
     }
     public String opcion1(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"FormRegistroC":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"FormRegistroC":"";
     }
     public String opcion2(){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"Ingresar":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Ingresar":"";
     }
     public String opcion2(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"index":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"index":"";
     }
     public String opcion3(){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"Bodega":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Bodega":"";
     }
      public String opcion3(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"PrincipalBodega":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"PrincipalBodega":"";
     }
     
     public String opcion4(){
-        return usuario.getTipoUsuario()==TipoUsuario.NoIngresado?"":"";
+        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"":"";
     }
     
     
