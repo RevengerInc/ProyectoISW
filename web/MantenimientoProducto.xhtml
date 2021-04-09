@@ -77,25 +77,31 @@
             </div>
         </nav>
         
-        <div class="container">
+        <div class="container-fluid">
              <h1 class="text-center">Mantenimiento de Productos</h1>
              
              <div class="row">
-                 <div class="col-md-6">
+                 <div class="col-md-8">
                      <h:form>
                          <p:dataTable var="producto" value="#{beanProducto.listaP}">
                             <f:facet name="header">Mis Productos</f:facet>
                             <p:column headerText="Foto">
                                 <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 50%"></h:graphicImage>
                             </p:column>
-                            <p:column headerText="Producto">
+                            <p:column headerText="Nombre">
                                 #{producto.nombre}
                             </p:column>
-                            <p:column headerText="Descripción">
+                            <p:column headerText="En stock">
+                                #{producto.cantidad}
+                            </p:column>
+                             <p:column headerText="Descripcion">
                                 #{producto.descripcion}
                             </p:column>
-                            <p:column headerText="Cantidad">
-                                #{producto.cantidad}
+                            <p:column headerText="Cant.Mínima">
+                                #{producto.minimo}
+                            </p:column>
+                             <p:column headerText="Precio">
+                                #{producto.precio}
                             </p:column>
                             <p:column headerText="Link">
                                 <h:commandLink value="Detalle" action="#{beanProducto.detalle(producto)}" style="color: black"></h:commandLink>
@@ -108,24 +114,42 @@
                          
                      </h:form>
                  </div>
-                 <div class="col-md-6">
+                 <div class="col-md-4">
                      <h:form>
-                         Nombre: <h:inputText></h:inputText>
-                         <br></br>
-                         <br></br>
-                         Descripción: <h:inputText></h:inputText>
-                         <br></br>
-                         <br></br>
-                         Precio: <h:inputText></h:inputText>
-                         <br></br>
-                         <br></br>
-                         Categoria: <h:inputText></h:inputText>
-                         <br></br>
-                         <br></br>
-                         Cantidad: <h:inputText></h:inputText>
-                         <br></br>
-                         <br></br>
-                        <h:commandButton  class="btn btn-warning pl-3" value="Nuevo" ></h:commandButton>
+
+
+                         <label for="nombre" style="width: 30%">Nombre: </label>
+                         <h:inputText id="nombre" style="width: 60%"></h:inputText>
+                         <label for="descripcion" style="width: 30%">Descripción: </label>
+                         <h:inputText id="descripcion" style="width: 60%"></h:inputText>
+                          <label for="precio" style="width: 30%">Precio: </label>
+                         <h:inputText id="precio" style="width: 60%"></h:inputText>
+                          <label for="categoria" style="width: 30%">Categoria: </label>
+                         <h:inputText id="categoria" style="width: 60%"></h:inputText>
+                          <label for="descripcion" style="width: 30%">Cantidad: </label>
+                         <h:inputText id="cantidad" style="width: 60%"></h:inputText>
+                                       
+
+                         <!--                             <div class="col-md-8">
+                                                          <h:inputText></h:inputText>
+                                                          <br></br>
+                                                          <br></br>
+                                                          <h:inputText></h:inputText>
+                                                          <br></br>
+                                                          <br></br>
+                                                          <h:inputText></h:inputText>
+                                                          <br></br>
+                                                          <br></br>
+                                                          <h:inputText></h:inputText>
+                                                          <br></br>
+                                                          <br></br>
+                                                          <h:inputText></h:inputText>
+                                                          <br></br>
+                                                          <br></br>
+                                                      </div>-->
+
+
+                         <h:commandButton  class="btn btn-warning pl-3" value="Nuevo" ></h:commandButton>
                          <h:commandButton  class="btn btn-warning pl-3" value="Guardar" ></h:commandButton>
                          <br></br>
                          <br></br>
