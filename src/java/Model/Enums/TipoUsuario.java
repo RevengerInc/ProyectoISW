@@ -10,8 +10,35 @@ package Model.Enums;
  * @author César
  */
 public enum TipoUsuario {
-    Administrador,
-    Bodeguero,
-    Cliente, 
-    NoIngresado
+    ADMINISTRADOR("A"){
+        public String toString (){
+            return "Administrador";
+        }
+    },
+    BODEGUERO("B"){
+        public String toString (){
+            return "Bodeguero";
+        }
+    },
+    CLIENTE("C"){
+        public String toString (){
+            return "Cliente";
+        }
+    }, 
+    NOINGRESADO("N"){
+        public String toString (){
+            return "No Ingresado";
+        }
+    };
+    
+    String atributo;
+    private TipoUsuario (String atributo){
+        this.atributo = atributo;
+    }
+
+    public String getAtributo() {
+        return atributo;
+    }
+    
+    
 }

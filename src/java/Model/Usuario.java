@@ -18,14 +18,16 @@ public class Usuario {
     private String telefono;
     private String correoID;
     private String estado;
+    private String password; 
     
-    public Usuario(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID, String estado) {
+    public Usuario(String nombre, TipoUsuario tipoUsuario, String cedula, String telefono, String correoID, String estado, String password) {
         this.nombre = nombre;
         this.tipoUsuario = tipoUsuario;
         this.cedula = cedula;
         this.telefono = telefono;
         this.correoID = correoID;
         this.estado = estado;
+        this.password = password;
     }
 
     public Usuario() {
@@ -57,6 +59,14 @@ public class Usuario {
 
     public String getTelefono() {
         return telefono;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEstado() {
