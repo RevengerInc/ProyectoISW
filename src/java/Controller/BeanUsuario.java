@@ -89,7 +89,7 @@ public class BeanUsuario implements Serializable {
                         return "Opción inválida";
                 }
             case 3:
-                return "Cerrar sesión";
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"":"Cerrar sesión";
             default:
                 return "Opción inválida";
         }
