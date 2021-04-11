@@ -25,9 +25,17 @@ public class BeanUsuario implements Serializable {
      * 
      */
     private Usuario usuario = new Usuario();
+    private BeanObtenerDatosSesion obtenerSesion= new BeanObtenerDatosSesion();
     public BeanUsuario() {
+        if(obtenerSesion.getUsuarioLogin()==null){
+            System.out.print("NULOOOOOOOOOO");
+            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
+            usuario.setNombre("Usuario");
+        }else{
+            System.out.print("LLENOOOOOOOOO");
+            usuario=obtenerSesion.getUsuarioLogin();
+        }
         
-        usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
     }
     
 
@@ -37,6 +45,54 @@ public class BeanUsuario implements Serializable {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+    public String linkOpciones(int numOpcion){
+        TipoUsuario tipo= this.usuario.getTipoUsuario();
+        switch(numOpcion){
+            case 1:
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"FormRegistroC":"MantenimientoPerfil";
+            case 2:
+                switch(tipo){
+                    case ADMINISTRADOR:
+                        return "Reportes";
+                    case BODEGUERO:
+                        return "";
+                    case CLIENTE:
+                        return "HistorialPedido";
+                    case NOINGRESADO:
+                        return "index";
+                    default:
+                        return "Opción inválida";
+                }
+            case 3:
+                return "index";
+            default:
+                return "Opción inválida";
+        }
+    }
+    public String etiquetaOpciones(int numOpcion){
+        TipoUsuario tipo= this.usuario.getTipoUsuario();
+        switch(numOpcion){
+            case 1:
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"Registrarse":"Modificar perfil";
+            case 2:
+                switch(tipo){
+                    case ADMINISTRADOR:
+                        return "Reportes";
+                    case BODEGUERO:
+                        return "";
+                    case CLIENTE:
+                        return "Historial";
+                    case NOINGRESADO:
+                        return "Ingresar";
+                    default:
+                        return "Opción inválida";
+                }
+            case 3:
+                return "Cerrar sesión";
+            default:
+                return "Opción inválida";
+        }
     }
     public String opcion1(){
         return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Registrarse":"";
