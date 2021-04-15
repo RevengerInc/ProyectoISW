@@ -32,20 +32,21 @@ public class BeanFactura implements Serializable {
      * Creates a new instance of BeanFactura
      */
     private FacturaDB facturaDB = new FacturaDB();
-    private LinkedList <Factura> listaF = new LinkedList<>();
+    private LinkedList <Factura> listaPendientesDirecto = new LinkedList<>();
+    private LinkedList <Factura> listaPendientesEncomienda = new LinkedList<>();
+    private LinkedList <Factura> listaPendientesPresencial = new LinkedList<>();
     private Factura factura = new Factura();
     private HorarioDB horarioDB = new HorarioDB();
     private String horaEntrega = "";
     private TipoEnvio tipoEnvioElegido;
     private TipoVenta tipoVentaElegido;
+    private String error= "";
     public BeanFactura() {
-        listaF = facturaDB.mostrarFacturasPendientes();
-        
     }
     
     public LinkedList<Factura> mostrarFacturasPendientes(){
         LinkedList <Factura> facturasPendientes = new LinkedList<>();
-        for (Factura factura1 : listaF) {
+        for (Factura factura1 : listaPendientesDirecto) {
             if(factura1.getEstado().equals(EstadoFactura.Pendiente)){
                 facturasPendientes.add(factura1);
             }
@@ -87,12 +88,17 @@ public class BeanFactura implements Serializable {
         this.facturaDB = facturaDB;
     }
 
-    public LinkedList<Factura> getListaF() {
-        return listaF;
+    public LinkedList<Factura> getListaPendientesDirecto() {
+        try {
+            listaPendientesDirecto = facturaDB.mostrarFacturasPendientes(TipoEnvio.EnvioDirecto);
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
+        return listaPendientesDirecto;
     }
 
-    public void setListaF(LinkedList<Factura> listaF) {
-        this.listaF = listaF;
+    public void setListaPendientesDirecto(LinkedList<Factura> listaPendientesDirecto) {
+        this.listaPendientesDirecto = listaPendientesDirecto;
     }
 
     public TipoEnvio getTipoEnvioElegido() {
@@ -136,6 +142,40 @@ public class BeanFactura implements Serializable {
 
     public void setHoraEntrega(String horaEntrega) {
         this.horaEntrega = horaEntrega;
+    }
+
+    public LinkedList<Factura> getListaPendientesEncomienda() {
+        try {
+            listaPendientesEncomienda = facturaDB.mostrarFacturasPendientes(TipoEnvio.Encomienda);
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
+        return listaPendientesEncomienda;
+    }
+
+    public void setListaPendientesEncomienda(LinkedList<Factura> listaPendientesEncomienda) {
+        this.listaPendientesEncomienda = listaPendientesEncomienda;
+    }
+
+    public LinkedList<Factura> getListaPendientesPresencial() {
+        try {
+            listaPendientesPresencial = facturaDB.mostrarFacturasPendientes(TipoEnvio.Presencial);
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
+        return listaPendientesPresencial;
+    }
+
+    public void setListaPendientesPresencial(LinkedList<Factura> listaPendientesPresencial) {
+        this.listaPendientesPresencial = listaPendientesPresencial;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
     
     

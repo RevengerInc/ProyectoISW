@@ -44,6 +44,7 @@
                 <div id="top-bar-center" class="col-md-3">
                     <h:form>
                             <p:menubar>
+                                <p:submenu label="#{beanUsuario.usuario.nombre}">
                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(1)}" outcome="#{beanUsuario.linkOpciones(1)}"></p:menuitem>
                                     <p:separator/>
                                     <p:menuitem value="#{beanUsuario.etiquetaOpciones(2)}" outcome="#{beanUsuario.linkOpciones(2)}"></p:menuitem>
@@ -137,8 +138,7 @@
                 </a>
               </div>
         </div>
-        </section>
-        <!--Fin del header-->
+            <!--Fin del header-->
         <!--Comienzo del body-->
         <section>
             <div class="container">
@@ -166,6 +166,8 @@
             </div>
         </section>
         <!--Fin del body-->
+        </section>
+        
         <!--Comienzo footer-->
     <div class="container-fluid pie-pagina">
         <div class="container">

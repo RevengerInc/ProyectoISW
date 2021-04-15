@@ -25,15 +25,18 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class BeanLoginControlador implements Serializable {
        
-    String correoIngresado;
-    String contrasennia;
-    String error;
-    Usuario usuario;
+    private String correoIngresado;
+    private String contrasennia;
+    private String error;
+    private Usuario usuario;
+    private BeanUsuario beanUsuario= new BeanUsuario();
 
      /**
      * Creates a new instance of LoginControlador
      */
     public BeanLoginControlador() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario","");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","");
     }
     
     public String getCorreoIngresado() {
@@ -70,18 +73,19 @@ public class BeanLoginControlador implements Serializable {
                 System.out.println("HOLA1");
                 error=usuario.getNombre();
             }else{
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario",correoIngresado);
+                beanUsuario.setUsuario(usuario);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("Usuario",correoIngresado);
                 if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
                     System.out.println("HOLA2");
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Administrador");
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Administrador");
                     
                 }else if(usuario.getTipoUsuario().equals(TipoUsuario.BODEGUERO)){
                     System.out.println("HOLA3");
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Bodeguero");
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Bodeguero");
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalBodega.xhtml");
                 }else{
                     System.out.println("HOLA4");
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Cliente");
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Cliente");
                     FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
                 }
                 

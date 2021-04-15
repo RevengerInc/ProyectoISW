@@ -27,6 +27,12 @@ public class BeanUsuario implements Serializable {
     private Usuario usuario = new Usuario();
     private BeanObtenerDatosSesion obtenerSesion= new BeanObtenerDatosSesion();
     public BeanUsuario() {
+        
+        
+    }
+    
+
+    public Usuario getUsuario() {
         if(obtenerSesion.getUsuarioLogin()==null){
             System.out.print("NULOOOOOOOOOO");
             usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
@@ -35,11 +41,6 @@ public class BeanUsuario implements Serializable {
             System.out.print("LLENOOOOOOOOO");
             usuario=obtenerSesion.getUsuarioLogin();
         }
-        
-    }
-    
-
-    public Usuario getUsuario() {
         return usuario;
     }
 
@@ -48,6 +49,14 @@ public class BeanUsuario implements Serializable {
     }
     public String linkOpciones(int numOpcion){
         TipoUsuario tipo= this.usuario.getTipoUsuario();
+        if(obtenerSesion.getUsuarioLogin()==null){
+            System.out.print("NULOOOOOOOOOO");
+            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
+            usuario.setNombre("Usuario");
+        }else{
+            System.out.print("LLENOOOOOOOOO");
+            usuario=obtenerSesion.getUsuarioLogin();
+        }
         switch(numOpcion){
             case 1:
                 return tipo.equals(TipoUsuario.NOINGRESADO)?"FormRegistroC":"MantenimientoPerfil";
@@ -71,6 +80,14 @@ public class BeanUsuario implements Serializable {
         }
     }
     public String etiquetaOpciones(int numOpcion){
+        if(obtenerSesion.getUsuarioLogin()==null){
+            System.out.print("NULOOOOOOOOOO");
+            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
+            usuario.setNombre("Usuario");
+        }else{
+            System.out.print("LLENOOOOOOOOO");
+            usuario=obtenerSesion.getUsuarioLogin();
+        }
         TipoUsuario tipo= this.usuario.getTipoUsuario();
         switch(numOpcion){
             case 1:
@@ -94,28 +111,5 @@ public class BeanUsuario implements Serializable {
                 return "Opción inválida";
         }
     }
-    public String opcion1(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Registrarse":"";
-    }
-    public String opcion1(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"FormRegistroC":"";
-    }
-    public String opcion2(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Ingresar":"";
-    }
-    public String opcion2(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"index":"";
-    }
-    public String opcion3(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Bodega":"";
-    }
-     public String opcion3(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"PrincipalBodega":"";
-    }
-    
-    public String opcion4(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"":"";
-    }
-    
     
 }
