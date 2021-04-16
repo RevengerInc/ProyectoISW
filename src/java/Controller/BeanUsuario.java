@@ -31,16 +31,16 @@ public class BeanUsuario implements Serializable {
         
     }
     
-
-    public Usuario getUsuario() {
+    public void refrescarUsuarioLogeado(){
         if(obtenerSesion.getUsuarioLogin()==null){
-            System.out.print("NULOOOOOOOOOO");
             usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
             usuario.setNombre("Usuario");
         }else{
-            System.out.print("LLENOOOOOOOOO");
             usuario=obtenerSesion.getUsuarioLogin();
         }
+    }
+    public Usuario getUsuario() {
+        refrescarUsuarioLogeado();
         return usuario;
     }
 
@@ -49,14 +49,7 @@ public class BeanUsuario implements Serializable {
     }
     public String linkOpciones(int numOpcion){
         TipoUsuario tipo= this.usuario.getTipoUsuario();
-        if(obtenerSesion.getUsuarioLogin()==null){
-            System.out.print("NULOOOOOOOOOO");
-            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
-            usuario.setNombre("Usuario");
-        }else{
-            System.out.print("LLENOOOOOOOOO");
-            usuario=obtenerSesion.getUsuarioLogin();
-        }
+        refrescarUsuarioLogeado();
         switch(numOpcion){
             case 1:
                 return tipo.equals(TipoUsuario.NOINGRESADO)?"FormRegistroC":"MantenimientoPerfil";
@@ -80,14 +73,7 @@ public class BeanUsuario implements Serializable {
         }
     }
     public String etiquetaOpciones(int numOpcion){
-        if(obtenerSesion.getUsuarioLogin()==null){
-            System.out.print("NULOOOOOOOOOO");
-            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
-            usuario.setNombre("Usuario");
-        }else{
-            System.out.print("LLENOOOOOOOOO");
-            usuario=obtenerSesion.getUsuarioLogin();
-        }
+        refrescarUsuarioLogeado();
         TipoUsuario tipo= this.usuario.getTipoUsuario();
         switch(numOpcion){
             case 1:

@@ -28,7 +28,7 @@ import java.util.LinkedList;
  */
 public class FacturaDB {
     
-    public LinkedList <Factura>  mostrarFacturasPendientes(TipoEnvio envio) throws SNMPExceptions{
+    public LinkedList <Factura>  mostrarFacturasPendientesPorTipoEnvio(TipoEnvio envio) throws SNMPExceptions{
         
         ProductoDB prodDB= new ProductoDB();
         String select = "";
@@ -40,7 +40,7 @@ public class FacturaDB {
             AccesoDatos accesoDatos= new AccesoDatos();
             
             //Se crea la sentencia de Busqueda
-            select="EXEC PA_ConsultarProductosPorIDFactura ";
+            select="EXEC PA_ConsultarFacturasPendientesPorTipoEnvio '"+envio.getCodigo()+"'";
                     
             //se ejecuta la sentencia sql
             ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
@@ -68,7 +68,7 @@ public class FacturaDB {
           } finally {
               
           }
-          return null;
+          return listaP;
     }
     public  LinkedList<Integer> ConsultarFacturasIDPorUsuarioID(String correoUsuario, String estado) throws SNMPExceptions{
       String select = "";
@@ -99,6 +99,30 @@ public class FacturaDB {
               
           }
           return listaP;
+      }
+    public  void FinalizarFactura(String idFactura) throws SNMPExceptions{
+      String update = "";
+          
+          try {
+              //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos= new AccesoDatos();
+            
+            //Se crea la sentencia de Busqueda
+            update="EXEC PA_FinalizarFactura '"+idFactura+"'";
+                    
+            //se ejecuta la sentencia sql
+            int rsPA= accesoDatos.ejecutaSQL(update);
+            
+              
+         } catch (SQLException e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage(), e.getErrorCode());
+          }catch (Exception e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage());
+          } finally {
+              
+          }
       }
 
 }

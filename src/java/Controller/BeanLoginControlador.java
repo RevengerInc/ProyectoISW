@@ -70,21 +70,17 @@ public class BeanLoginControlador implements Serializable {
             usuario=UsuarioDB.Autenticar(this.getCorreoIngresado(), this.getContrasennia());
             
             if (usuario.getNombre().equals("Contraseña incorrecta") || usuario.getNombre().equals("Correo incorrecto")){
-                System.out.println("HOLA1");
                 error=usuario.getNombre();
             }else{
                 beanUsuario.setUsuario(usuario);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("Usuario",correoIngresado);
                 if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
-                    System.out.println("HOLA2");
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Administrador");
                     
                 }else if(usuario.getTipoUsuario().equals(TipoUsuario.BODEGUERO)){
-                    System.out.println("HOLA3");
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Bodeguero");
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalBodega.xhtml");
                 }else{
-                    System.out.println("HOLA4");
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Cliente");
                     FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
                 }

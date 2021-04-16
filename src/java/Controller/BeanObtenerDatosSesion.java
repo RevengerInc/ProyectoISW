@@ -60,7 +60,6 @@ public class BeanObtenerDatosSesion implements Serializable {
 
 	if (user != null) {
 		try {
-                    System.out.println("Tengo una sesion");
 			String userId = user.toString();
                         this.setDatos(userId);
                         this.UsuarioLogin=UsuarioDB.obtenerUsuarioPorID(userId);
@@ -72,7 +71,6 @@ public class BeanObtenerDatosSesion implements Serializable {
                     System.out.println(ex.getMensajeParaDesarrollador());
             }
 	}else{
-            System.out.println("No tengo una sesion");
             this.UsuarioLogin= null;
 		
 	}

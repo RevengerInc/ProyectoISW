@@ -72,7 +72,11 @@ public class BeanFactura implements Serializable {
     }
     
     public String completarPedido(Factura f){
-        this.factura.setEstado(EstadoFactura.Finalizado);
+        try {
+            this.facturaDB.FinalizarFactura(factura.getId());
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        }
         return "PrincipalBodega";
     }
     
@@ -90,7 +94,7 @@ public class BeanFactura implements Serializable {
 
     public LinkedList<Factura> getListaPendientesDirecto() {
         try {
-            listaPendientesDirecto = facturaDB.mostrarFacturasPendientes(TipoEnvio.EnvioDirecto);
+            listaPendientesDirecto = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.EnvioDirecto);
         } catch (SNMPExceptions ex) {
             error+=ex.getMensajeParaDesarrollador();
         }
@@ -146,7 +150,7 @@ public class BeanFactura implements Serializable {
 
     public LinkedList<Factura> getListaPendientesEncomienda() {
         try {
-            listaPendientesEncomienda = facturaDB.mostrarFacturasPendientes(TipoEnvio.Encomienda);
+            listaPendientesEncomienda = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.Encomienda);
         } catch (SNMPExceptions ex) {
             error+=ex.getMensajeParaDesarrollador();
         }
@@ -159,7 +163,7 @@ public class BeanFactura implements Serializable {
 
     public LinkedList<Factura> getListaPendientesPresencial() {
         try {
-            listaPendientesPresencial = facturaDB.mostrarFacturasPendientes(TipoEnvio.Presencial);
+            listaPendientesPresencial = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.Presencial);
         } catch (SNMPExceptions ex) {
             error+=ex.getMensajeParaDesarrollador();
         }
