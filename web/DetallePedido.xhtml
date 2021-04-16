@@ -42,22 +42,13 @@
                 <div id="top-bar-center" class="col-md-3">
                     <h:form>
                             <p:menubar>
-                                    <p:submenu label="Usuario">
-                                        <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
-                                        <p:separator/>
-                                         <p:menuitem value="#{beanUsuario.opcion3()}" outcome="#{beanUsuario.opcion3(3)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="Historial" outcome="HistorialPedido"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="Reportes" outcome="Reportes"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="MantenimientoPerfil" outcome="MantenimientoPerfil"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="MantenimientoProducto" outcome="MantenimientoProducto"></p:menuitem>
-                                        <p:separator/>
-                                    </p:submenu>
+                                    <p:submenu label="#{beanUsuario.usuario.nombre}">
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(1)}" outcome="#{beanUsuario.linkOpciones(1)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(2)}" outcome="#{beanUsuario.linkOpciones(2)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(3)}" outcome="#{beanUsuario.linkOpciones(3)}"></p:menuitem>
+                                </p:submenu>
                             </p:menubar>
                     </h:form>
                 </div>
@@ -96,10 +87,6 @@
                                 <p:column headerText="Cantidad Solicitada">
                                 #{DetFactura.cantidadSolicita}
                                 </p:column>
-                                //more columns
-                                <f:facet name="footer">
-                                    In total there are cars.
-                                </f:facet>
                             </p:dataTable>
                         </h:form>
                     </div>

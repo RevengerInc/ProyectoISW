@@ -13,6 +13,7 @@ import Model.Enums.TipoEnvio;
 import Model.Enums.TipoVenta;
 import Model.Factura;
 import Model.Historial;
+import Model.Horario;
 import Model.Pedido;
 import Model.Producto;
 import Model.ProductosCarrito;
@@ -27,41 +28,47 @@ import java.util.LinkedList;
  */
 public class FacturaDB {
     
-    public LinkedList <Factura>  mostrarFacturasPendientes(){
-        Factura factura1 = new Factura();
-        Factura factura2 = new Factura();
-        LinkedList <Factura> listaFacturas = new LinkedList<>();
+    public LinkedList <Factura>  mostrarFacturasPendientesPorTipoEnvio(TipoEnvio envio) throws SNMPExceptions{
         
-        Pedido pedido1 = new Pedido();
-        Pedido pedido2 = new Pedido();
-        
-        pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, 1, 61),5));
-        pedido1.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, 1, 61),7));
-        
-        pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Black Watch", "Product Description", "black-watch.jpg", 72, 1, 61),7));
-        pedido2.getListaProductos().add(new ProductosCarrito(new Producto("nvklal433", "Blue Watch", "Product Description", "black-watch.jpg", 72, 1, 61),10));
-
-        
-        factura1.setCliente(new ClienteDB().obtenerCliente());
-        factura1.setPedido(pedido1);
-        factura1.setId("1");
-        factura1.setEstado(EstadoFactura.Pendiente);
-        factura1.setFechaPedido(LocalDate.now());
-        factura1.setTipoEnvio(TipoEnvio.EnvioDirecto);
-        factura1.setTipoVenta(TipoVenta.Contado);
-        
-        factura2.setCliente(new ClienteDB().obtenerCliente());
-        factura2.setPedido(pedido2);
-        factura2.setId("2");
-        factura2.setEstado(EstadoFactura.Pendiente);
-        factura2.setFechaPedido(LocalDate.now());
-        factura2.setTipoEnvio(TipoEnvio.Presencial);
-        factura2.setTipoVenta(TipoVenta.Credito);
-        
-        
-        listaFacturas.add(factura1);
-        listaFacturas.add(factura2);
-        return listaFacturas;
+        ProductoDB prodDB= new ProductoDB();
+        String select = "";
+        LinkedList<Factura> listaP = new LinkedList<Factura>();
+        Factura factura1;
+          
+          try {
+              //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos= new AccesoDatos();
+            
+            //Se crea la sentencia de Busqueda
+            select="EXEC PA_ConsultarFacturasPendientesPorTipoEnvio '"+envio.getCodigo()+"'";
+                    
+            //se ejecuta la sentencia sql
+            ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
+            //se llama el array con los proyectos  
+              while (rsPA.next()) {
+                factura1 = new Factura();  
+                factura1.setCliente(new ClienteDB().obtenerClientePorID(rsPA.getString("IdUsuario")));
+                factura1.setPedido(new Pedido(prodDB.consultarProductosPorFacturaID(rsPA.getInt("ID"))));
+                factura1.setId(rsPA.getString("ID"));
+                factura1.setEstado(rsPA.getString("IdEstado").equals("P")?EstadoFactura.Pendiente:rsPA.getString("IdEstado").equals("E")?EstadoFactura.EnProceso:EstadoFactura.Finalizado);
+                factura1.setFechaPedido(LocalDate.parse(rsPA.getString("fecha")));
+                factura1.setTipoEnvio(rsPA.getString("TipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("TipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial);
+                factura1.setTipoVenta(rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito);
+                factura1.setHorario(new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas")));
+                listaP.add(factura1);
+              }
+              rsPA.close();
+              
+         } catch (SQLException e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage(), e.getErrorCode());
+          }catch (Exception e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage());
+          } finally {
+              
+          }
+          return listaP;
     }
     public  LinkedList<Integer> ConsultarFacturasIDPorUsuarioID(String correoUsuario, String estado) throws SNMPExceptions{
       String select = "";
@@ -92,6 +99,30 @@ public class FacturaDB {
               
           }
           return listaP;
+      }
+    public  void FinalizarFactura(String idFactura) throws SNMPExceptions{
+      String update = "";
+          
+          try {
+              //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos= new AccesoDatos();
+            
+            //Se crea la sentencia de Busqueda
+            update="EXEC PA_FinalizarFactura '"+idFactura+"'";
+                    
+            //se ejecuta la sentencia sql
+            int rsPA= accesoDatos.ejecutaSQL(update);
+            
+              
+         } catch (SQLException e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage(), e.getErrorCode());
+          }catch (Exception e) {
+              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
+                                      e.getMessage());
+          } finally {
+              
+          }
       }
 
 }

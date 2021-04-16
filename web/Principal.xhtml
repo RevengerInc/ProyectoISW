@@ -34,7 +34,7 @@
                 <div class="row">
                     <div id="top-bar" class="col-md-9">
                         <ul>
-                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">cesar@empresaAP.com</a></li>
                             <li><i class="fa fa-phone"></i> +506 1111 1111</li>
                             <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
                         </ul>
@@ -42,21 +42,12 @@
                     <div id="top-bar-center" class="col-md-3">
                         <h:form>
                             <p:menubar>
-                                <p:submenu label="Usuario">
-                                    <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
+                                <p:submenu label="#{beanUsuario.usuario.nombre}">
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(1)}" outcome="#{beanUsuario.linkOpciones(1)}"></p:menuitem>
                                     <p:separator/>
-                                    <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(2)}" outcome="#{beanUsuario.linkOpciones(2)}"></p:menuitem>
                                     <p:separator/>
-                                    <p:menuitem value="#{beanUsuario.opcion3()}" outcome="#{beanUsuario.opcion3(3)}"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="Historial" outcome="HistorialPedido"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="Reportes" outcome="Reportes"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="MantenimientoPerfil" outcome="MantenimientoPerfil"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="MantenimientoProducto" outcome="MantenimientoProducto"></p:menuitem>
-                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(3)}" outcome="#{beanUsuario.linkOpciones(3)}"></p:menuitem>
                                 </p:submenu>
                             </p:menubar>
                         </h:form>
@@ -150,8 +141,7 @@
                     </a>
                 </div>
             </div>
-        </section>
-        <!--Fin del carrusel-->
+             <!--Fin del carrusel-->
         <!--Comienzo etiqueta lo mas nuevo-->
         <div class="container-fluid mt-5 pt-3 pb-3 texto-etiqueta shadow">
             <div class="container h-100">
@@ -215,6 +205,8 @@
             </div>
         </div>
         <!--Fin galeria lo mas nuevo-->
+        </section>
+       
         <!--Comienzo footer-->
         <div class="container-fluid pie-pagina">
             <div class="container">

@@ -5,12 +5,17 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
+import Model.DB.UsuarioDB;
+import Model.Enums.TipoUsuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.faces.context.FacesContext;
 import Model.Usuario;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.ExternalContext;
 /**
  *
@@ -20,10 +25,11 @@ import javax.faces.context.ExternalContext;
 @SessionScoped
 public class BeanObtenerDatosSesion implements Serializable {
     
-    Usuario UsuarioLogin;
+    Usuario UsuarioLogin= new Usuario();
     String datos;
-
+    
     public Usuario getUsuarioLogin() {
+        consultarSesion();
         return UsuarioLogin;
     }
 
@@ -42,6 +48,7 @@ public class BeanObtenerDatosSesion implements Serializable {
      * Creates a new instance of ObtenerDatosSesion
      */
     public BeanObtenerDatosSesion() {
+        
     }
     
     public void consultarSesion(){
@@ -55,13 +62,16 @@ public class BeanObtenerDatosSesion implements Serializable {
 		try {
 			String userId = user.toString();
                         this.setDatos(userId);
+                        this.UsuarioLogin=UsuarioDB.obtenerUsuarioPorID(userId);
 			
 		} catch (ClassCastException e) {
 			
 			
-		}
+		} catch (SNMPExceptions ex) {
+                    System.out.println(ex.getMensajeParaDesarrollador());
+            }
 	}else{
-		context.invalidateSession();
+            this.UsuarioLogin= null;
 		
 	}
 	

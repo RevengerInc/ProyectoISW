@@ -44,22 +44,13 @@
                 <div id="top-bar-center" class="col-md-3">
                     <h:form>
                             <p:menubar>
-                                    <p:submenu label="Usuario">
-                                        <p:menuitem value="#{beanUsuario.opcion1()}" outcome="#{beanUsuario.opcion1(1)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion2()}" outcome="#{beanUsuario.opcion2(2)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="#{beanUsuario.opcion3()}" outcome="#{beanUsuario.opcion3(3)}"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="Historial" outcome="HistorialPedido"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="Reportes" outcome="Reportes"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="MantenimientoPerfil" outcome="MantenimientoPerfil"></p:menuitem>
-                                        <p:separator/>
-                                        <p:menuitem value="MantenimientoProducto" outcome="MantenimientoProducto"></p:menuitem>
-                                        <p:separator/>
-                                    </p:submenu>
+                                <p:submenu label="#{beanUsuario.usuario.nombre}">
+                                   <p:menuitem value="#{beanUsuario.etiquetaOpciones(1)}" outcome="#{beanUsuario.linkOpciones(1)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(2)}" outcome="#{beanUsuario.linkOpciones(2)}"></p:menuitem>
+                                    <p:separator/>
+                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(3)}" outcome="#{beanUsuario.linkOpciones(3)}"></p:menuitem>
+                                </p:submenu>
                             </p:menubar>
                     </h:form>
                 </div>
@@ -147,35 +138,86 @@
                 </a>
               </div>
         </div>
-        </section>
-        <!--Fin del header-->
+            <!--Fin del header-->
         <!--Comienzo del body-->
         <section>
             <div class="container">
                 <div class="row">
-                    <h:form>
-                        <p:dataTable var="factura" value="#{beanFactura.mostrarFacturasPendientes()}">
-                            <f:facet name="header">Lista de Pedidos</f:facet>
-                            <p:column headerText="Fecha">
-                               #{factura.fechaPedido}
-                            </p:column>
-                            <p:column headerText="Estado">
-                                #{factura.estado}
-                            </p:column>
-                                
-                            <p:column headerText="Detalle">
-                                <h:commandLink value="Ver" action="#{beanFactura.detalleFactura(factura)}" style="color: black"></h:commandLink>
-                            </p:column>
-                            //more columns
-                            <f:facet name="footer">
-                                In total there are cars.
-                            </f:facet>
-                        </p:dataTable>
-                    </h:form>
+                    <p:tabView>
+                                <p:tab title="Facturas Pandientes con Envío Directo">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="facturaDirecta" value="#{beanFactura.listaPendientesDirecto}">
+                                            <f:facet name="header">Lista de Pedidos</f:facet>
+                                            <p:column headerText="Código de Factura">
+                                               #{facturaDirecta.id}
+                                            </p:column>
+                                            <p:column headerText="Fecha">
+                                               #{facturaDirecta.fechaPedido}
+                                            </p:column>
+                                            <p:column headerText="Cliente">
+                                               #{facturaDirecta.cliente.nombre}
+                                            </p:column>
+                                            <p:column headerText="Estado">
+                                                #{facturaDirecta.estado}
+                                            </p:column>
+                                            <p:column headerText="Horario">
+                                                #{facturaDirecta.horario.hora}
+                                            </p:column>
+                                            <p:column headerText="Detalle">
+                                                <h:commandLink value="Ver" action="#{beanFactura.detalleFactura(facturaDirecta)}" style="color: black"></h:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+
+                                </p:tab>
+                                <p:tab title="Facturas Pendientes Presenciales">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="facturaPresencial" value="#{beanFactura.listaPendientesPresencial}">
+                                            <f:facet name="header">Lista de Pedidos</f:facet>
+                                            <p:column headerText="Fecha">
+                                               #{facturaPresencial.fechaPedido}
+                                            </p:column>
+                                            <p:column headerText="Estado">
+                                                #{facturaPresencial.estado}
+                                            </p:column>
+
+                                            <p:column headerText="Detalle">
+                                                <h:commandLink value="Ver" action="#{beanFactura.detalleFactura(facturaPresencial)}" style="color: black"></h:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                </p:tab>
+                                <p:tab title="Facturas Pendientes con Encomienda">
+                                    <div class="card">
+                                    <h:form>
+                                        <p:dataTable var="facturaEncomienda" value="#{beanFactura.listaPendientesEncomienda}">
+                                            <f:facet name="header">Lista de Pedidos</f:facet>
+                                            <p:column headerText="Fecha">
+                                               #{facturaEncomienda.fechaPedido}
+                                            </p:column>
+                                            <p:column headerText="Estado">
+                                                #{facturaEncomienda.estado}
+                                            </p:column>
+
+                                            <p:column headerText="Detalle">
+                                                <h:commandLink value="Ver" action="#{beanFactura.detalleFactura(facturaEncomienda)}" style="color: black"></h:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                </p:tab>
+                            </p:tabView>
+                    
                 </div>
             </div>
         </section>
         <!--Fin del body-->
+        </section>
+        
         <!--Comienzo footer-->
     <div class="container-fluid pie-pagina">
         <div class="container">

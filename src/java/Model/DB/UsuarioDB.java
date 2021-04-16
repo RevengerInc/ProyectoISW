@@ -44,7 +44,7 @@ public class UsuarioDB {
             //se llama el array con los proyectos  
             if (rsPA.next() != false) {
                 //rsPA.next();
-                if (rsPA.getString("contasena").equals(Password)) {
+                if (rsPA.getString("contrasena").equals(Password)) {
                     user = obtenerUsuarioPorID(Login);
                 } else {
                     user.setNombre("Contraseña incorrecta");

@@ -110,6 +110,14 @@ public class Factura {
     public void setDescuento(double descuento) {
         this.descuento = descuento;
     }
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
       
     
 }

@@ -25,41 +25,77 @@ public class BeanUsuario implements Serializable {
      * 
      */
     private Usuario usuario = new Usuario();
+    private BeanObtenerDatosSesion obtenerSesion= new BeanObtenerDatosSesion();
     public BeanUsuario() {
         
-        usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
+        
     }
     
-
+    public void refrescarUsuarioLogeado(){
+        if(obtenerSesion.getUsuarioLogin()==null){
+            usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
+            usuario.setNombre("Usuario");
+        }else{
+            usuario=obtenerSesion.getUsuarioLogin();
+        }
+    }
     public Usuario getUsuario() {
+        refrescarUsuarioLogeado();
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public String opcion1(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Registrarse":"";
+    public String linkOpciones(int numOpcion){
+        TipoUsuario tipo= this.usuario.getTipoUsuario();
+        refrescarUsuarioLogeado();
+        switch(numOpcion){
+            case 1:
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"FormRegistroC":"MantenimientoPerfil";
+            case 2:
+                switch(tipo){
+                    case ADMINISTRADOR:
+                        return "Reportes";
+                    case BODEGUERO:
+                        return "";
+                    case CLIENTE:
+                        return "HistorialPedido";
+                    case NOINGRESADO:
+                        return "index";
+                    default:
+                        return "Opción inválida";
+                }
+            case 3:
+                return "index";
+            default:
+                return "Opción inválida";
+        }
     }
-    public String opcion1(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"FormRegistroC":"";
+    public String etiquetaOpciones(int numOpcion){
+        refrescarUsuarioLogeado();
+        TipoUsuario tipo= this.usuario.getTipoUsuario();
+        switch(numOpcion){
+            case 1:
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"Registrarse":"Modificar perfil";
+            case 2:
+                switch(tipo){
+                    case ADMINISTRADOR:
+                        return "Reportes";
+                    case BODEGUERO:
+                        return "";
+                    case CLIENTE:
+                        return "Historial";
+                    case NOINGRESADO:
+                        return "Ingresar";
+                    default:
+                        return "Opción inválida";
+                }
+            case 3:
+                return tipo.equals(TipoUsuario.NOINGRESADO)?"":"Cerrar sesión";
+            default:
+                return "Opción inválida";
+        }
     }
-    public String opcion2(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Ingresar":"";
-    }
-    public String opcion2(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"index":"";
-    }
-    public String opcion3(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"Bodega":"";
-    }
-     public String opcion3(int n){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"PrincipalBodega":"";
-    }
-    
-    public String opcion4(){
-        return usuario.getTipoUsuario()==TipoUsuario.NOINGRESADO?"":"";
-    }
-    
     
 }

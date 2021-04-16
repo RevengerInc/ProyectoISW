@@ -12,5 +12,16 @@ package Model.Enums;
 public enum TipoEnvio {
     EnvioDirecto,
     Presencial,
-    Encomienda
+    Encomienda;
+    private String cod;
+
+    static {
+        EnvioDirecto.cod = "D";
+        Presencial.cod = "P";
+        Encomienda.cod = "E";
+    }
+
+    public String getCodigo() {
+        return cod;
+    }
 }

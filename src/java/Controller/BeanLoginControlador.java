@@ -5,12 +5,16 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import Model.Usuario;
 import Model.DB.UsuarioDB;
 import Model.Enums.TipoUsuario;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 
 /**
@@ -21,15 +25,18 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class BeanLoginControlador implements Serializable {
        
-    String correoIngresado;
-    String contrasennia;
-    String error;
-    Usuario usuario;
+    private String correoIngresado;
+    private String contrasennia;
+    private String error;
+    private Usuario usuario;
+    private BeanUsuario beanUsuario= new BeanUsuario();
 
      /**
      * Creates a new instance of LoginControlador
      */
     public BeanLoginControlador() {
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario","");
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","");
     }
     
     public String getCorreoIngresado() {
@@ -58,28 +65,33 @@ public class BeanLoginControlador implements Serializable {
     
     
    public void autenticar(){
-       try{
-           usuario=UsuarioDB.Autenticar(this.getCorreoIngresado(), this.getContrasennia());
-           
-           if (usuario.getNombre().equals("Contraseña incorrecta") || usuario.getNombre().equals("Correo incorrecto")){
-               error=usuario.getNombre();  
-           }else{
-               FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("Usuario",correoIngresado);
-               if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
-                   FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Administrador");
-                   
-               }else if(usuario.getTipoUsuario().equals(TipoUsuario.BODEGUERO)){
-                   FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Bodeguero");
-                   FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalBodega.xhtml");
-               }else{
-                   FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("TipoUsuario","Cliente");
-                   FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
-               }
-               
-           }
-       }catch (Exception e){
        
-       }
+        try {
+            usuario=UsuarioDB.Autenticar(this.getCorreoIngresado(), this.getContrasennia());
+            
+            if (usuario.getNombre().equals("Contraseña incorrecta") || usuario.getNombre().equals("Correo incorrecto")){
+                error=usuario.getNombre();
+            }else{
+                beanUsuario.setUsuario(usuario);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("Usuario",correoIngresado);
+                if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Administrador");
+                    
+                }else if(usuario.getTipoUsuario().equals(TipoUsuario.BODEGUERO)){
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Bodeguero");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalBodega.xhtml");
+                }else{
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Cliente");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
+                }
+                
+            }
+        } catch (SNMPExceptions ex) {
+            error+=ex.getMensajeParaDesarrollador();
+        } catch (IOException ex) {
+           error+=ex.toString();
+        }
+       
        
    }
     
