@@ -24,6 +24,7 @@ public class Producto {
     private int minimo;
 
     private int cantidad;
+    
 
     public Producto(String id, String nombre, String descripcion, String imagen, double precio, int cantidad, int minimo) {
         this.id = id;
