@@ -17,6 +17,7 @@ import Model.Horario;
 import Model.Pedido;
 import Model.Producto;
 import Model.ProductosCarrito;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -27,102 +28,126 @@ import java.util.LinkedList;
  * @author Fabian
  */
 public class FacturaDB {
-    
-    public LinkedList <Factura>  mostrarFacturasPendientesPorTipoEnvio(TipoEnvio envio) throws SNMPExceptions{
-        
-        ProductoDB prodDB= new ProductoDB();
+
+    public LinkedList<Factura> mostrarFacturasPendientesPorTipoEnvio(TipoEnvio envio) throws SNMPExceptions {
+
+        ProductoDB prodDB = new ProductoDB();
         String select = "";
         LinkedList<Factura> listaP = new LinkedList<Factura>();
         Factura factura1;
-          
-          try {
-              //Se intancia la clase de acceso a datos
-            AccesoDatos accesoDatos= new AccesoDatos();
-            
+
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
             //Se crea la sentencia de Busqueda
-            select="EXEC PA_ConsultarFacturasPendientesPorTipoEnvio '"+envio.getCodigo()+"'";
-                    
+            select = "EXEC PA_ConsultarFacturasPendientesPorTipoEnvio '" + envio.getCodigo() + "'";
+
             //se ejecuta la sentencia sql
-            ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
+            ResultSet rsPA = accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
-              while (rsPA.next()) {
-                factura1 = new Factura();  
+            while (rsPA.next()) {
+                factura1 = new Factura();
                 factura1.setCliente(new ClienteDB().obtenerClientePorID(rsPA.getString("IdUsuario")));
                 factura1.setPedido(new Pedido(prodDB.consultarProductosPorFacturaID(rsPA.getInt("ID"))));
                 factura1.setId(rsPA.getString("ID"));
-                factura1.setEstado(rsPA.getString("IdEstado").equals("P")?EstadoFactura.Pendiente:rsPA.getString("IdEstado").equals("E")?EstadoFactura.EnProceso:EstadoFactura.Finalizado);
+                factura1.setEstado(rsPA.getString("IdEstado").equals("P") ? EstadoFactura.Pendiente : rsPA.getString("IdEstado").equals("E") ? EstadoFactura.EnProceso : EstadoFactura.Finalizado);
                 factura1.setFechaPedido(LocalDate.parse(rsPA.getString("fecha")));
-                factura1.setTipoEnvio(rsPA.getString("TipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("TipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial);
-                factura1.setTipoVenta(rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito);
+                factura1.setTipoEnvio(rsPA.getString("TipoDespacho").equals("D") ? TipoEnvio.EnvioDirecto : rsPA.getString("TipoDespacho").equals("E") ? TipoEnvio.Encomienda : TipoEnvio.Presencial);
+                factura1.setTipoVenta(rsPA.getString("IdTipoVenta").equals("CON") ? TipoVenta.Contado : TipoVenta.Credito);
                 factura1.setHorario(new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas")));
+                factura1.setSubTotal(rsPA.getDouble("subTotal"));
                 listaP.add(factura1);
-              }
-              rsPA.close();
-              
-         } catch (SQLException e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage(), e.getErrorCode());
-          }catch (Exception e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage());
-          } finally {
-              
-          }
-          return listaP;
+            }
+            rsPA.close();
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return listaP;
     }
-    public  LinkedList<Integer> ConsultarFacturasIDPorUsuarioID(String correoUsuario, String estado) throws SNMPExceptions{
-      String select = "";
-      LinkedList<Integer> listaP = new LinkedList<Integer>();
-          
-          try {
-              //Se intancia la clase de acceso a datos
-            AccesoDatos accesoDatos= new AccesoDatos();
-            
+
+    public LinkedList<Integer> ConsultarFacturasIDPorUsuarioID(String correoUsuario, String estado) throws SNMPExceptions {
+        String select = "";
+        LinkedList<Integer> listaP = new LinkedList<Integer>();
+
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
             //Se crea la sentencia de Busqueda
-            select="EXEC PA_ConsultarFacturasIDPorUsuarioID '"+correoUsuario+"', '"+estado+"'";
-                    
+            select = "EXEC PA_ConsultarFacturasIDPorUsuarioID '" + correoUsuario + "', '" + estado + "'";
+
             //se ejecuta la sentencia sql
-            ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
+            ResultSet rsPA = accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
-              while (rsPA.next()) {
+            while (rsPA.next()) {
                 listaP.add(rsPA.getInt("ID"));
-              }
-              rsPA.close();
-              
-         } catch (SQLException e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage(), e.getErrorCode());
-          }catch (Exception e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage());
-          } finally {
-              
-          }
-          return listaP;
-      }
-    public  void FinalizarFactura(String idFactura) throws SNMPExceptions{
-      String update = "";
-          
-          try {
-              //Se intancia la clase de acceso a datos
-            AccesoDatos accesoDatos= new AccesoDatos();
-            
+            }
+            rsPA.close();
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return listaP;
+    }
+
+    public void FinalizarFactura(String idFactura) throws SNMPExceptions {
+        String update = "";
+
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
             //Se crea la sentencia de Busqueda
-            update="EXEC PA_FinalizarFactura '"+idFactura+"'";
-                    
+            update = "EXEC PA_FinalizarFactura '" + idFactura + "'";
+
             //se ejecuta la sentencia sql
-            int rsPA= accesoDatos.ejecutaSQL(update);
-            
-              
-         } catch (SQLException e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage(), e.getErrorCode());
-          }catch (Exception e) {
-              throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION, 
-                                      e.getMessage());
-          } finally {
-              
-          }
-      }
+            int rsPA = accesoDatos.ejecutaSQL(update);
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+    }
+
+    public int insertarDetFactura(String idProducto, int cantidad, double monto) throws SNMPExceptions {
+        String insert = "";
+        int resultInsert;
+        try {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            insert = "EXEC PA_InsertarDetFactura '" + idProducto + "' , " + cantidad + " , " + monto;
+
+            resultInsert = accesoDatos.ejecutaSQL(insert);
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return resultInsert;
+    }
 
 }

@@ -10,6 +10,7 @@ package Model.Enums;
  * @author Fabian
  */
 public enum TipoVenta {
+   NoIndica,
    Contado,
    Credito
 }
