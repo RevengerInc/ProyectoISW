@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>CARRITO COMPRAS</title>
 
-        
+
         <!-- Bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -71,7 +71,6 @@
                 </div>
             </div>
         </nav>
-        
         <main class = "mainContainer">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-center">
@@ -81,40 +80,55 @@
                         </div>                        
 
                         <h:form>
-                            <div class="form-group">
-                                <h:outputLabel value="Horarios de Entrega" class="pr-3"></h:outputLabel>
-                                <h:selectOneMenu label="Horarios" onchange="submit()" value="#{beanFactura.horaEntrega}">
-                                    <f:selectItems value="#{beanFactura.mostrarHorarios()}"></f:selectItems>
-                                </h:selectOneMenu>
-                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <h:outputLabel value="Horarios de Entrega" class="pr-3"></h:outputLabel>
+                                    <br></br>
+                                    <h:selectOneMenu label="Horarios" onchange="submit()" value="#{beanFactura.horaEntrega}">
+                                        <f:selectItem itemValue="NA" itemLabel="No Indicado"></f:selectItem>
+                                        <f:selectItems  value="#{beanFactura.mostrarHorarios()}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
 
-                            <div class="form-group">
-                                <h:outputLabel value="Total a Pagar" class="pr-3"></h:outputLabel>
-                                <h:outputText value="#{beanPedido.totalPagar()}"></h:outputText>
-                            </div>
-
-                            <div class="form-group">
-                                <h:outputLabel value="Dirección de Entrega" class="pr-3"></h:outputLabel>
-                                <h:selectOneMenu label="Direcciones" onchange="submit()" value="#{beanDireccion.direccionEntrega}">
-                                    <f:selectItems value="#{beanDireccion.obtenerDirecciones()}"></f:selectItems>
-                                </h:selectOneMenu>
-                            </div>
-
-                            <div class="form-group">
                                 <h:outputLabel value="Tipo de entrega" class="pr-3"></h:outputLabel>
-                                <h:selectOneMenu label="Entrega" onchange="submit()" value="#{beanFactura.tipoEnvioElegido}">
+                                <br></br>
+
+                                <h:selectOneMenu label="Entrega" onchange="submit(); #{beanFactura.encomienda()}"  value="#{beanFactura.tipoEnvioElegido}">
+
                                     <f:selectItems value="#{beanFactura.tiposEnvio()}"></f:selectItems>
+
                                 </h:selectOneMenu>
-                            </div>
-                            <div class="form-group mb-3">
-                                <h:outputLabel value="Forma de Pago" class="pr-3"></h:outputLabel>
-                                <h:selectOneMenu label="FromaPago" onchange="submit()" value="#{beanFactura.tipoVentaElegido}">
-                                    <f:selectItems value="#{beanFactura.tipoVenta()}"></f:selectItems>
-                                </h:selectOneMenu>
+
+                                <br></br>
+                                <h:outputLabel value="Total a Pagar" class="pr-3"></h:outputLabel>
+                                <br></br>
+                                <h:outputText class="ml-3" value="₡ #{beanFactura.total}" ></h:outputText>
+                                <br></br>
+
+                                <div class="form-group mb-3">
+                                    <h:outputLabel value="Forma de Pago" class="pr-3"></h:outputLabel>
+                                    <br></br>
+                                    <h:selectOneMenu label="FromaPago" onchange="submit()" value="#{beanFactura.tipoVentaElegido}">
+                                        <f:selectItems value="#{beanFactura.tipoVenta()}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+
+                                <div class="form-group">
+                                    <h:outputLabel value="Direcciónes de entrega Reistradas" class="pr-3"></h:outputLabel>
+                                    <br></br>
+                                    <h:selectOneMenu label="Direcciones" onchange="submit()" value="#{beanFactura.direccionEntrega}">
+                                        <f:selectItem itemValue="-1" itemLabel="No Indicado"></f:selectItem>
+                                        <f:selectItems value="#{beanFactura.obtenerDirecciones()}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>  
+
+                                <br></br>
+                                <h:outputLabel value="#{beanFactura.mensaje}" style="color: red;" class="pr-3"></h:outputLabel>
                             </div>
 
 
-                            <h:commandButton value="Finalizar" class="btn btn-block mt-5 btnFinalizar" action="Principal.xhtml"></h:commandButton> 
+                            <h:commandButton value="Finalizar" class="btn btn-block mt-5 btnFinalizar" action="#{beanFactura.crearPedido()}"></h:commandButton> 
+
 
                             <br></br>
 
@@ -125,14 +139,14 @@
 
 
 
-
+                            <h:outputLabel value="*El envío por encomienda tiene un valor de ₡ 2500" class="pr-3"></h:outputLabel>
 
                         </h:form>
                     </div>
                 </div>
             </div>   
         </main>
-        
+
     </h:body>
 </html>
 

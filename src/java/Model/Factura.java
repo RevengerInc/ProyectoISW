@@ -20,35 +20,38 @@ public class Factura {
     
     private Cliente cliente;
     
-    private String id = "";
+    private String id;
     private EstadoFactura estado;
     private LocalDate fechaPedido;
     private TipoEnvio tipoEnvio;
     private TipoVenta tipoVenta;
     private final double IVA = 0.15;
-    private double descuento = 0;
+    private double descuento;
     private Horario horario;
- 
+    private double subTotal;
+    
     public Factura() {
         
     }
 
-    public Factura(Pedido pedido, Cliente cliente, EstadoFactura estado, LocalDate fechaPedido, TipoEnvio tipoEnvio, TipoVenta tipoVenta, Horario horario, String id) {
+    public Factura(Pedido pedido, Cliente cliente, String id, EstadoFactura estado, LocalDate fechaPedido, TipoEnvio tipoEnvio, TipoVenta tipoVenta, double descuento, Horario horario) {
         this.pedido = pedido;
         this.cliente = cliente;
+        this.id = id;
         this.estado = estado;
         this.fechaPedido = fechaPedido;
         this.tipoEnvio = tipoEnvio;
         this.tipoVenta = tipoVenta;
+        this.descuento = descuento;
         this.horario = horario;
-        this.id=id;
+        this.subTotal = pedido.totalPagar() + pedido.totalPagar()*IVA;
     }
-    
+
 
     public EstadoFactura getEstado() {
         return estado;
     }
-
+    
     public void setEstado(EstadoFactura estado) {
         this.estado = estado;
     }
@@ -118,6 +121,19 @@ public class Factura {
     public void setHorario(Horario horario) {
         this.horario = horario;
     }
-      
+
+    public double getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public double getIVA() {
+        return IVA;
+    }
+
+     
     
 }

@@ -74,7 +74,7 @@
                         <a class="nav-item nav-link active" href="CarritoCompras.xhtml">Ver Carrito<span class="sr-only">(current)</span></a>
                     </div>
                 </div>
-                <h:outputText style="font-size: 25px; color: white;" value="#{beanPedido.objPedido.listaProductos.size()}"/>
+                <h:outputText style="font-size: 25px; color: white;" value="#{beanFactura.objPedido.listaProductos.size()}"/>
                 <h:form>
                     <h:commandButton image="IMAGES/ICONS/carrito-de-compras_1.png" action="CarritoCompras.xhtml"/>
                 </h:form>
@@ -118,12 +118,12 @@
                         <h:outputText value="#{beanProducto.disponibilidad()}" style="color: #{beanProducto.color()}"></h:outputText>
                         <br/>
                        <h:form>
-                           <p:spinner value="#{beanPedido.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="#{beanProducto.producto.minimo}"/>
+                           <p:spinner value="#{beanFactura.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="#{beanProducto.producto.minimo}"/>
                            <br/>
                            <br/>
                            <h:commandButton value="Comprar" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
                            <br/>
-                           <h:commandButton value="Agregar al carrito" actionListener="#{beanPedido.agregarProductoPedido(beanProducto.producto)}" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
+                           <h:commandButton value="Agregar al carrito" actionListener="#{beanFactura.agregarProductoPedido(beanProducto.producto)}" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
                            <br/>
                            <br/>
                           <h:link value="Regresar a la lista" outcome="ListaProducto"></h:link>

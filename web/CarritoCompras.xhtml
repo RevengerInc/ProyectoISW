@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <h:form>
-                        <h:commandButton action="FinalizarPedido.xhtml" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
+                        <h:commandButton action="FinalizarPedido.xhtml" actionListener="#{beanFactura.setTotal(beanFactura.objPedido.totalPagar())}" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
                     </h:form>
                     
                 </div>
@@ -80,7 +80,7 @@
             <div class="container">
                 <div class="row">
                     <h:form>
-                        <p:dataTable var="product" value="#{beanPedido.objPedido.listaProductos}">
+                        <p:dataTable var="product" value="#{beanFactura.objPedido.listaProductos}">
                             <f:facet name="header">Carrito de compras</f:facet>
                             <p:column headerText="Foto">
 
@@ -107,7 +107,7 @@
                             </p:column>
                             <p:column headerText="Eliminar"> 
                                 <div align="center">
-                                    <h:commandButton image="IMAGES/ICONS/borrar.png" actionListener="#{beanPedido.eliminarProductoCarrito(product)}"></h:commandButton>
+                                    <h:commandButton image="IMAGES/ICONS/borrar.png" actionListener="#{beanFactura.eliminarProductoCarrito(product)}"></h:commandButton>
                                 </div>
                             </p:column>
                             <f:facet name="footer">
@@ -115,7 +115,7 @@
                             </f:facet>
                         </p:dataTable>
                         <div class="mt-2" align="center">
-                            <h:commandButton action="FinalizarPedido.xhtml" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
+                            <h:commandButton action="FinalizarPedido.xhtml" actionListener="#{beanFactura.setTotal(beanFactura.objPedido.totalPagar())}" class="btn btn-info" value="Finalizar Compra"></h:commandButton>
                         </div>
                     </h:form>
                 </div>

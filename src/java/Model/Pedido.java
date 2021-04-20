@@ -32,6 +32,7 @@ public class Pedido {
         return total;
     }
     
+    
     public void agregarProducto (Producto producto, int cantidad){
         
         for(int i = 0; i < listaProductos.size(); i++){

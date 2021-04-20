@@ -7,11 +7,9 @@ package Model.DB;
 
 import DAO.AccesoDatos;
 import DAO.SNMPExceptions;
+import Model.Enums.TipoEnvio;
 import Model.Historial;
 import Model.Pedido;
-import Model.Producto;
-import Model.ProductosCarrito;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
@@ -41,4 +39,26 @@ public class HistorialDB {
           }
           return listaP;
       }
+    
+    public int insertarHistorialEntrega(Historial historial, String envio, String horaRetiro) throws SNMPExceptions {
+        String insert = "";
+        int resultInsert;
+        try {
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            insert = "PA_InsertarHistorialEntrega " + null + " , '" + envio + "' , '" + horaRetiro + " ' ";
+
+            resultInsert = accesoDatos.ejecutaSQL(insert);
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return resultInsert;
+    }
 }
