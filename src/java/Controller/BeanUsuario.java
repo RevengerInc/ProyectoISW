@@ -5,12 +5,19 @@
  */
 package Controller;
 
+import DAO.SNMPExceptions;
+import Model.DB.DireccionDB;
+import Model.DB.ProvinciaDB;
 import Model.Enums.OpcionesComboUsuario;
 import Model.Enums.TipoUsuario;
 import Model.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -25,12 +32,23 @@ public class BeanUsuario implements Serializable {
      * 
      */
     private Usuario usuario = new Usuario();
+    private Usuario usuarioMantenimiento = new Usuario();
+    private LinkedList<SelectItem> listaDirecciones = new LinkedList<>();
+    private LinkedList<SelectItem> provincia = new LinkedList<>();
     private BeanObtenerDatosSesion obtenerSesion= new BeanObtenerDatosSesion();
+    private int numDireccion = 0;
+    private String error = "";
+    private String contrasenniaMantenimiento = "";
+    private String contrasenniaConfirmacionMantenimiento = "";
     public BeanUsuario() {
         
         
     }
-    
+    public void guardarCambiosMantenimiento(){
+        if(usuarioMantenimiento.getNombre().trim().isEmpty()){
+            
+        }
+    }
     public void refrescarUsuarioLogeado(){
         if(obtenerSesion.getUsuarioLogin()==null){
             usuario.setTipoUsuario(TipoUsuario.NOINGRESADO);
@@ -58,7 +76,7 @@ public class BeanUsuario implements Serializable {
                     case ADMINISTRADOR:
                         return "Reportes";
                     case BODEGUERO:
-                        return "";
+                        return "index";
                     case CLIENTE:
                         return "HistorialPedido";
                     case NOINGRESADO:
@@ -83,7 +101,7 @@ public class BeanUsuario implements Serializable {
                     case ADMINISTRADOR:
                         return "Reportes";
                     case BODEGUERO:
-                        return "";
+                        return " ";
                     case CLIENTE:
                         return "Historial";
                     case NOINGRESADO:
@@ -97,5 +115,72 @@ public class BeanUsuario implements Serializable {
                 return "Opción inválida";
         }
     }
+
+    public LinkedList<SelectItem> getListaDirecciones() {
+        try {
+            DireccionDB dirDB = new DireccionDB();
+            listaDirecciones = dirDB.obtenerDirecciones(usuario.getCorreoID());
+        } catch (SNMPExceptions ex) {
+            error = ex.getMensajeParaDesarrollador();
+        }
+        return listaDirecciones;
+    }
+
+    public void setListaDirecciones(LinkedList<SelectItem> listaDirecciones) {
+        this.listaDirecciones = listaDirecciones;
+    }
+
+    public int getNumDireccion() {
+        return numDireccion;
+    }
+
+    public void setNumDireccion(int numDireccion) {
+        this.numDireccion = numDireccion;
+    }
+
+    public LinkedList<SelectItem> getProvincia() {
+        ProvinciaDB pDB= new ProvinciaDB();
+        try {
+            provincia=pDB.moTodo();
+        } catch (SNMPExceptions ex) {
+            error = ex.getMensajeParaDesarrollador();
+        }
+        return provincia;
+    }
+
+    public void setProvincia(LinkedList<SelectItem> provincia) {
+        this.provincia = provincia;
+    }
+
+    public Usuario getUsuarioMantenimiento() {
+        if(obtenerSesion.getUsuarioLogin()==null){
+            usuarioMantenimiento.setTipoUsuario(TipoUsuario.NOINGRESADO);
+            usuarioMantenimiento.setNombre("Usuario");
+        }else{
+            usuarioMantenimiento=obtenerSesion.getUsuarioLogin();
+        }
+        return usuarioMantenimiento;
+    }
+
+    public void setUsuarioMantenimiento(Usuario usuarioMantenimiento) {
+        this.usuarioMantenimiento = usuarioMantenimiento;
+    }
+
+    public String getContrasenniaMantenimiento() {
+        return contrasenniaMantenimiento;
+    }
+
+    public void setContrasenniaMantenimiento(String contrasenniaMantenimiento) {
+        this.contrasenniaMantenimiento = contrasenniaMantenimiento;
+    }
+
+    public String getContrasenniaConfirmacionMantenimiento() {
+        return contrasenniaConfirmacionMantenimiento;
+    }
+
+    public void setContrasenniaConfirmacionMantenimiento(String contrasenniaConfirmacionMantenimiento) {
+        this.contrasenniaConfirmacionMantenimiento = contrasenniaConfirmacionMantenimiento;
+    }
+    
     
 }

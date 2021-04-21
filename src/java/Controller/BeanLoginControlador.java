@@ -76,7 +76,7 @@ public class BeanLoginControlador implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("Usuario",correoIngresado);
                 if(usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR)){
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Administrador");
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("Reportes.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("Principal.xhtml");
                 }else if(usuario.getTipoUsuario().equals(TipoUsuario.BODEGUERO)){
                     FacesContext.getCurrentInstance().getExternalContext().getSessionMap().replace("TipoUsuario","Bodeguero");
                     FacesContext.getCurrentInstance().getExternalContext().redirect("PrincipalBodega.xhtml");

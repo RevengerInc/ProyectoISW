@@ -5,137 +5,184 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Mantenimiento Perfil</title>
+        <title>Modificar perfil</title>
 
-        
-        <!-- Bootstrap-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <!-- CSS only -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
               integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"></link>
-        <!-- JS, Popper.js, and jQuery -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-        <script name="jquery/jquery.js" library="primefaces"></script>
-        <link rel="stylesheet" href="CSS/estilosPrincipal.css"></link>
+        <!-- Estilos -->
         <link rel="stylesheet" href="CSS/estilosRegistro.css"></link>
+
     </h:head>
+
     <h:body>
-        <header class="header">
-            <div class="container header">
-                <div class="row">
-                    <div id="top-bar" class="col-md-9">
-                        <ul>
-                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="contacto@empresaAP.com">contacto@empresaAP.com</a></li>
-                            <li><i class="fa fa-phone"></i> +506 1111 1111</li>
-                            <li><i class="fa fa-calendar"></i> Lunes-Viernes 7am - 4pm</li>
-                        </ul>
-                    </div>
-                    <div id="top-bar-center" class="col-md-3">
-                        <h:form>
-                            <p:menubar>
-                                <p:submenu label="#{beanUsuario.usuario.nombre}">
-                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(1)}" outcome="#{beanUsuario.linkOpciones(1)}"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(2)}" outcome="#{beanUsuario.linkOpciones(2)}"></p:menuitem>
-                                    <p:separator/>
-                                    <p:menuitem value="#{beanUsuario.etiquetaOpciones(3)}" outcome="#{beanUsuario.linkOpciones(3)}"></p:menuitem>
-                                </p:submenu>
-                            </p:menubar>
-                        </h:form>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Comienzo del topbar-->
-
-        <!-- Fin del topbar-->
-        <!--Comienzo del header-->
-        <nav class="navbar navbar-expand-lg navbar-dark shadow-lg">
-            <div class="container">
-                <a class="navbar-brand" href="Principal.xhtml" style="font-size: 1.5rem;">Alimentos Procesados</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <div class="navbar-nav mx-5 text-center">                     
-                    </div>
-                </div>
-            </div>
-        </nav>
-
         <main class = "mainContainer">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-12 shadow-lg">
                         <div class="text-center mb-5">
-                            <h3 class="text-uppercase mt-1"><strong>Mantenimiento Perfil</strong> <img src="IMAGES/ICONS/Registrar.png"></img></h3>
+                            <h3 class="text-uppercase mt-1"><strong>Modificar perfil</strong></h3>
                         </div>                        
 
                         <h:form>
-                            <div class="form-group">
-                                <label for="nombre">Nombre <img src="IMAGES/ICONS/Cliente.png"></img></label>
-                                <h:inputText class="form-control" id="nombre"></h:inputText>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="telefono">Télefono <img src="IMAGES/ICONS/telefono.png"></img></label>
-                                <h:inputText class="form-control" id="telefono"></h:inputText>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="cedula">Cédula <img src="IMAGES/ICONS/identificacion.png"></img></label>
-                                <h:inputText class="form-control" id="cedula"></h:inputText>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="correoElectronico">Correo Electrónico <img src="IMAGES/ICONS/email.png"></img></label>
-                                <h:inputText class="form-control" id="correoElectronico"></h:inputText>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="contrasena">Contraseña <img src="IMAGES/ICONS/contrasena.png"></img></label>
-                                <h:inputSecret class="form-control" id="contrasena"> </h:inputSecret>
-                            </div>
-
 
                             <div class="row">
+
                                 <div class="col-md-6">
-                                    <h:commandButton value="Nuevo" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
-                                    <h:commandButton value="Guardar" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
-                                    <h:commandButton value="Eliminar" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
+                                    <div class="form-group">
+                                        <label for="nombre">Nombre <img src="IMAGES/ICONS/Cliente.png"></img></label>
+                                        <h:inputText value="#{beanUsuario.usuarioMantenimiento.nombre}" class="form-control" id="nombre"></h:inputText>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="telefono">Télefono <img src="IMAGES/ICONS/telefono.png"></img></label>
+                                        <h:inputText class="form-control" value="#{beanUsuario.usuarioMantenimiento.telefono}" id="telefono"></h:inputText>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cedula">Cédula <img src="IMAGES/ICONS/identificacion.png"></img></label>
+                                        <h:inputText class="form-control" value="#{beanUsuario.usuarioMantenimiento.cedula}" id="cedula"></h:inputText>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="correoElectronico">Correo Electrónico <img src="IMAGES/ICONS/email.png"></img></label>
+                                        <h:inputText class="form-control" value="#{beanUsuario.usuarioMantenimiento.correoID}" disabled="true" id="correoElectronico"></h:inputText>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="contrasena">Nueva Contraseña <img src="IMAGES/ICONS/contrasena.png"></img></label>
+                                        <br></br>
+                                        <p:password id="toggle" value="#{beanUsuario.contrasenniaMantenimiento}" redisplay="true"/>
+                                        <label for="confirmarContrasena">Confirmar Contraseña <img src="IMAGES/ICONS/contrasena.png"></img></label>
+                                        <br></br>
+                                        <p:password id="toggle" value="#{beanUsuario.contrasenniaConfirmacionMantenimiento}" redisplay="true"/>
+                                    </div>
                                 </div>
-                                
-                             <div class="col-md-6">
-                                    <h:commandButton value="Buscar" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
-                                    <h:commandButton value="Editar" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
-                                    <h:commandButton value="Regresar" class="btn btn-block mt-5 btnRegistrarse" action="Principal.xhtml"></h:commandButton> 
+
+                                <div class="col-md-6">
+                                    <p:tabView>
+                                        <p:tab title="Nueva dirección">
+                                    
+                                    <div class="form-group">
+                                        <label for="Provincia"> Provincia <img src="IMAGES/ICONS/mapa.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboProvincia" label="provincias" onchange="submit()" value="#{beanRegistroC.provinciaUsuario}">
+                                            <f:selectItems  value="#{beanRegistroC.moTodoProvincias()}"></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboCanton"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Cantón"> Cantón <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu  id="comboCanton" label="canton" onchange="submit()" value="#{beanRegistroC.cantonUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="CANTON NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems value="#{beanRegistroC.moTodoCantones()}"></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboDistrito"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Distrito"> Distrito <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboDistrito" label="Distrito" onchange="submit()" value="#{beanRegistroC.distritoUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="DISTRITO NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems value="#{beanRegistroC.moTodoDistritos()}"></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboBarrio"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Barrio"> Barrio <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboBarrio" label="Barrio" onchange="submit()" value="#{beanRegistroC.barrioUsuario}">
+                                            <f:selectItem itemValue="0" itemLabel="BARRIO NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems value="#{beanRegistroC.moTodoBarrios()}"></f:selectItems>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="OtrasSenas"> Otras señas</label>
+                                        <br></br>
+                                        <h:inputTextarea cols="30" value="#{beanRegistroC.otrasSenas}"></h:inputTextarea>
+                                    </div>
+                                            <h:commandButton value="Guardar nueva dirección" class="mt-3" onclick="submit()" actionListener="#{beanRegistroC.registrarse()}"></h:commandButton>
+                                            
+                                            </p:tab>
+                                        <p:tab title="Modificar dirección">
+                                            <div class="form-group">
+                                                <label for="direccionM"> Dirección a modificar</label>
+                                                <br></br>
+                                                <p:selectOneMenu id="direccionM" label="provincias" onchange="submit()" value="#{beanUsuario.numDireccion}">
+                                                    <f:selectItems  value="#{beanUsuario.listaDirecciones}"></f:selectItems>
+                                                    <p:ajax event="itemSelect" update="comboProvinciaM" />
+                                                </p:selectOneMenu>
+                                            </div>
+                                    <div class="form-group">
+                                        <label for="ProvinciaM"> Provincia <img src="IMAGES/ICONS/mapa.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboProvinciaM" label="provinciasM" onchange="submit()">
+                                            <f:selectItems></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboCantonM"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="CantónM"> Cantón <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu  id="comboCantonM" label="cantonM" onchange="submit()">
+                                            <f:selectItem itemValue="0" itemLabel="CANTON NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboDistrito"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="DistritoM"> Distrito <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboDistritoM" label="DistritoM" onchange="submit()">
+                                            <f:selectItem itemValue="0" itemLabel="DISTRITO NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems></f:selectItems>
+                                            <p:ajax event="itemSelect" update="comboBarrioM"/>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="BarrioM"> Barrio <img src="IMAGES/ICONS/check.png"></img></label>
+                                        <br></br>
+                                        <p:selectOneMenu id="comboBarrioM" label="BarrioM" onchange="submit()">
+                                            <f:selectItem itemValue="0" itemLabel="BARRIO NO ESPECIFICADO"></f:selectItem>
+                                            <f:selectItems></f:selectItems>
+                                        </p:selectOneMenu>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="OtrasSenasM"> Otras señas</label>
+                                        <br></br>
+                                        <h:inputTextarea cols="30" value="#{beanRegistroC.otrasSenas}"></h:inputTextarea>
+                                    </div>
+                                             <h:commandButton value="Guardar cambios en la dirección" class="mt-3" onclick="submit()" actionListener="#{beanRegistroC.registrarse()}"></h:commandButton>
+                                            </p:tab>
+                                        </p:tabView>
+                                </div>
 
                             </div>
-                            </div>
-                            
-                           
                             <br></br>
+
+                            <div align="center">
+                                <h:outputLabel class=" text-danger" value="#{beanRegistroC.mensaje}"></h:outputLabel>
+                            </div>
+
+                            <h:commandButton value="Guardar cambios" class="mt-3" onclick="submit()" actionListener="#{beanRegistroC.registrarse()}"></h:commandButton> 
+                            <h:commandButton value="Cancelar" class="mt-3" onclick="submit()" actionListener="#{beanRegistroC.registrarse()}"></h:commandButton> 
+                            
+
 
                             <div class="d-sm-flex mb-3 align-items-center">
                                 <span class="mx-auto font-weight-light">Create by Revenger INC®.</span> 
 
                             </div>
-
-
-
-
-
                         </h:form>
                     </div>
                 </div>

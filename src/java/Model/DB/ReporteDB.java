@@ -45,7 +45,7 @@ public class ReporteDB {
             ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
               while (rsPA.next()) {
-                listaP.add(new Factura(new Pedido(pDB.consultarProductosPorFacturaID(rsPA.getInt("IdFactura"))), cDB.obtenerClientePorID(rsPA.getString("IdUsuario")),rsPA.getString("IdFactura"),rsPA.getString("IdEstado").equals("E")?EstadoFactura.EnProceso:rsPA.getString("IdEstado").equals("F")?EstadoFactura.Finalizado:EstadoFactura.Pendiente , LocalDate.parse(rsPA.getString("fecha")), rsPA.getString("tipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("tipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial, rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito,0, new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas"))));
+                listaP.add(new Factura(new Pedido(pDB.consultarProductosPorFacturaID(rsPA.getInt("IdFactura"))), cDB.obtenerClientePorID(rsPA.getString("IdUsuario")),rsPA.getString("IdFactura"),rsPA.getString("IdEstado").equals("F")?EstadoFactura.Finalizado:EstadoFactura.Pendiente , LocalDate.parse(rsPA.getString("fecha")), rsPA.getString("tipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("tipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial, rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito,0, new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas"))));
               }
               rsPA.close();
               
@@ -77,7 +77,7 @@ public class ReporteDB {
             ResultSet rsPA= accesoDatos.ejecutaSQLRetornaRS(select);
             //se llama el array con los proyectos  
               while (rsPA.next()) {
-                listaP.add(new Factura(new Pedido(pDB.consultarProductosPorFacturaID(rsPA.getInt("IdFactura"))), cDB.obtenerClientePorID(rsPA.getString("IdUsuario")),rsPA.getString("IdFactura"),rsPA.getString("IdEstado").equals("E")?EstadoFactura.EnProceso:rsPA.getString("IdEstado").equals("F")?EstadoFactura.Finalizado:EstadoFactura.Pendiente , LocalDate.parse(rsPA.getString("fecha")), rsPA.getString("tipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("tipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial, rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito, 0, new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas"))));
+                listaP.add(new Factura(new Pedido(pDB.consultarProductosPorFacturaID(rsPA.getInt("IdFactura"))), cDB.obtenerClientePorID(rsPA.getString("IdUsuario")),rsPA.getString("IdFactura"),rsPA.getString("IdEstado").equals("F")?EstadoFactura.Finalizado:EstadoFactura.Pendiente , LocalDate.parse(rsPA.getString("fecha")), rsPA.getString("tipoDespacho").equals("D")?TipoEnvio.EnvioDirecto:rsPA.getString("tipoDespacho").equals("E")?TipoEnvio.Encomienda:TipoEnvio.Presencial, rsPA.getString("IdTipoVenta").equals("CON")?TipoVenta.Contado:TipoVenta.Credito, 0, new Horario(rsPA.getString("IdHorario"), rsPA.getString("Horas"))));
               }
               rsPA.close();
               

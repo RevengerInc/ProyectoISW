@@ -32,7 +32,6 @@ public class BeanReporte implements Serializable {
      */
     ReporteDB reporteDB= new ReporteDB();
      private LinkedList<Factura> listaPendiente = new LinkedList<Factura>();
-    private LinkedList<Factura> listaEnProceso = new LinkedList<Factura>();
     private LinkedList<Factura> listaEntregada = new LinkedList<Factura>();
     private LinkedList<Factura> listaCredito = new LinkedList<Factura>();
     private LinkedList<Factura> listaContado = new LinkedList<Factura>();
@@ -40,7 +39,6 @@ public class BeanReporte implements Serializable {
     
     public BeanReporte() {
         try {
-            this.listaEnProceso=reporteDB.reportesPorEstado("E");
             this.listaPendiente=reporteDB.reportesPorEstado("P");
             this.listaEntregada=reporteDB.reportesPorEstado("F");
             this.listaContado=reporteDB.reportesPorTipoVenta("CON");
@@ -71,9 +69,6 @@ public class BeanReporte implements Serializable {
     public void obtenerListaFacturas(EstadoFactura estado){
         try {
         switch (estado) {
-            case EnProceso:
-                listaEnProceso=reporteDB.reportesPorEstado("E");
-                break;
             case Finalizado:
                 listaEntregada=reporteDB.reportesPorEstado("F");
                 break;
@@ -85,14 +80,6 @@ public class BeanReporte implements Serializable {
             error+=ex.getMensajeParaDesarrollador();
         }
         
-    }
-
-    public LinkedList<Factura> getListaEnProceso() {
-        return listaEnProceso;
-    }
-
-    public void setListaEnProceso(LinkedList<Factura> listaEnProceso) {
-        this.listaEnProceso = listaEnProceso;
     }
 
     public LinkedList<Factura> getListaEntregada() {

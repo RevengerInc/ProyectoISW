@@ -85,7 +85,7 @@
                             <p:column headerText="Foto">
 
                                 <div align="center">
-                                    <h:graphicImage value="/IMAGES/BANNER_NUEVO/bamboo-watch.jpg" style="max-width: 50%"></h:graphicImage>
+                                    <h:graphicImage value="#{product.producto.imagen}" style="max-width: 100%"></h:graphicImage>
                                 </div>
 
                             </p:column>
@@ -110,9 +110,6 @@
                                     <h:commandButton image="IMAGES/ICONS/borrar.png" actionListener="#{beanFactura.eliminarProductoCarrito(product)}"></h:commandButton>
                                 </div>
                             </p:column>
-                            <f:facet name="footer">
-                                In total there are cars.
-                            </f:facet>
                         </p:dataTable>
                         <div class="mt-2" align="center">
                             <h:commandButton action="FinalizarPedido.xhtml" actionListener="#{beanFactura.setTotal(beanFactura.objPedido.totalPagar())}" class="btn btn-info" value="Finalizar Compra"></h:commandButton>

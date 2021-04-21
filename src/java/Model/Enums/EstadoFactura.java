@@ -12,5 +12,4 @@ package Model.Enums;
 public enum EstadoFactura {
     Pendiente,
     Finalizado,
-    EnProceso
 }

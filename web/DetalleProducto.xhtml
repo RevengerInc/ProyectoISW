@@ -121,8 +121,6 @@
                            <p:spinner value="#{beanFactura.cantidadSolicitada}" max="#{beanProducto.producto.cantidad}" min="#{beanProducto.producto.minimo}"/>
                            <br/>
                            <br/>
-                           <h:commandButton value="Comprar" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
-                           <br/>
                            <h:commandButton value="Agregar al carrito" actionListener="#{beanFactura.agregarProductoPedido(beanProducto.producto)}" disabled="#{beanProducto.disponibilidad()=='Agotado'}"></h:commandButton>
                            <br/>
                            <br/>
