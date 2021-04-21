@@ -43,7 +43,6 @@ public class BeanFactura implements Serializable {
     /**
      * Creates a new instance of BeanFactura
      */
-    private FacturaDB facturaDB = new FacturaDB();
     private PedidoDB pedidoDB = new PedidoDB();
     private HistorialDB historialDB = new HistorialDB();
     private LinkedList<Factura> listaPendientesDirecto = new LinkedList<>();
@@ -166,7 +165,7 @@ public class BeanFactura implements Serializable {
         Factura factura = new Factura(objPedido, ((Cliente) obtenerDatosSesion.getUsuarioLogin()), "", EstadoFactura.Pendiente, LocalDate.now(), tipoEnvioElegido, tipoVentaElegido, 0, new Horario(horaEntrega, ""));
         Historial historial = new Historial(0, objPedido);
         try {
-
+            FacturaDB facturaDB = new FacturaDB();
             pedidoDB.CrearPedido(factura, direccionEntrega);
             historialDB.insertarHistorialEntrega(historial, tipoEnvioElegido.getCodigo(), horaEntrega);
 
@@ -229,7 +228,8 @@ public class BeanFactura implements Serializable {
 
     public String completarPedido(Factura f) {
         try {
-            this.facturaDB.FinalizarFactura(factura.getId());
+            FacturaDB facturaDB = new FacturaDB();
+            facturaDB.FinalizarFactura(factura.getId());
         } catch (SNMPExceptions ex) {
             error += ex.getMensajeParaDesarrollador();
         }
@@ -248,17 +248,9 @@ public class BeanFactura implements Serializable {
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
-
-    public FacturaDB getFacturaDB() {
-        return facturaDB;
-    }
-
-    public void setFacturaDB(FacturaDB facturaDB) {
-        this.facturaDB = facturaDB;
-    }
-
     public LinkedList<Factura> getListaPendientesDirecto() {
         try {
+            FacturaDB facturaDB = new FacturaDB();
             listaPendientesDirecto = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.EnvioDirecto);
         } catch (SNMPExceptions ex) {
             error += ex.getMensajeParaDesarrollador();
@@ -320,6 +312,7 @@ public class BeanFactura implements Serializable {
 
     public LinkedList<Factura> getListaPendientesEncomienda() {
         try {
+            FacturaDB facturaDB = new FacturaDB();
             listaPendientesEncomienda = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.Encomienda);
         } catch (SNMPExceptions ex) {
             error += ex.getMensajeParaDesarrollador();
@@ -333,6 +326,7 @@ public class BeanFactura implements Serializable {
 
     public LinkedList<Factura> getListaPendientesPresencial() {
         try {
+            FacturaDB facturaDB = new FacturaDB();
             listaPendientesPresencial = facturaDB.mostrarFacturasPendientesPorTipoEnvio(TipoEnvio.Presencial);
         } catch (SNMPExceptions ex) {
             error += ex.getMensajeParaDesarrollador();
