@@ -12,6 +12,7 @@ import Model.DB.FacturaDB;
 import Model.DB.HistorialDB;
 import Model.DB.HorarioDB;
 import Model.DB.PedidoDB;
+import Model.DB.ProductoDB;
 import Model.Direccion;
 import Model.Enums.EstadoFactura;
 import Model.Enums.TipoEnvio;
@@ -25,7 +26,6 @@ import Model.ProductosCarrito;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -53,7 +53,8 @@ public class BeanFactura implements Serializable {
     private Factura factura = new Factura();
     private HorarioDB horarioDB = new HorarioDB();
     private Pedido objPedido = new Pedido();
-
+    private ProductoDB productoDB = new ProductoDB();
+            
     private String horaEntrega;
     private TipoEnvio tipoEnvioElegido = TipoEnvio.NoIndica;
     private TipoVenta tipoVentaElegido;
@@ -172,7 +173,7 @@ public class BeanFactura implements Serializable {
             for (int i = 0; i < objPedido.getListaProductos().size(); i++) {
 
                 facturaDB.insertarDetFactura(objPedido.getListaProductos().get(i).getProducto().getId(), objPedido.getListaProductos().get(i).getCantidadSolicita(), objPedido.getListaProductos().get(i).getProducto().getPrecio());
-
+                productoDB.ModificarCantidadDisponible(objPedido.getListaProductos().get(i).getCantidadSolicita(), objPedido.getListaProductos().get(i).getProducto().getId());
             }
 
         } catch (SNMPExceptions ex) {

@@ -9,17 +9,10 @@ import DAO.AccesoDatos;
 import DAO.SNMPExceptions;
 import Model.Cliente;
 import Model.Enums.TipoUsuario;
-import Model.Producto;
-import Model.ProductosCarrito;
 import Model.Usuario;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import javax.faces.model.SelectItem;
 
 /**
  *
@@ -124,5 +117,62 @@ public class UsuarioDB {
 
         }
         return resultInsert;
+    }
+    
+    public LinkedList<Usuario> obtenerUsuarioPorEstado(String estado) throws SNMPExceptions {
+        String select = "";
+        LinkedList<Usuario> listaUsuarioEspera = new LinkedList<>();
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            //Se crea la sentencia de Busqueda
+            select = "EXEC  PA_ConsultarUsuarioEstado '" + estado + "'";
+
+            //se ejecuta la sentencia sql
+            ResultSet rsPA = accesoDatos.ejecutaSQLRetornaRS(select);
+            //se llama el array con los proyectos  
+            while (rsPA.next()) {
+                Usuario objUsuario = new Usuario(rsPA.getString("NOMBRE"), rsPA.getString("IDTIPOUSUARIO").equals("C") ? TipoUsuario.CLIENTE : rsPA.getString("IDTIPOUSUARIO").equals("B") ? TipoUsuario.BODEGUERO : TipoUsuario.ADMINISTRADOR, rsPA.getString("CEDULA"), rsPA.getString("TELEFONO"), rsPA.getString("ID"), rsPA.getString("ESTADO"), rsPA.getString("CONTRASENA"));
+                listaUsuarioEspera.add(objUsuario);
+            }
+            rsPA.close();
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return listaUsuarioEspera;
+    }
+    
+    public int ModificarEstadoUsuario(String estado, String usuarioId) throws SNMPExceptions {
+        String update = "";
+        int resultUpdate;
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            //Se crea la sentencia de Busqueda
+            update = "EXEC PA_CambiarEstadoUsuario '" + estado + "' , '" + usuarioId + "'";
+
+            //se ejecuta la sentencia sql
+            resultUpdate = accesoDatos.ejecutaSQL(update);
+            //se llama el array con los proyectos  
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return resultUpdate;
     }
 }

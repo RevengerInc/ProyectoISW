@@ -8,15 +8,13 @@ package Controller;
 import DAO.SNMPExceptions;
 import Model.DB.DireccionDB;
 import Model.DB.ProvinciaDB;
-import Model.Enums.OpcionesComboUsuario;
+import Model.DB.UsuarioDB;
 import Model.Enums.TipoUsuario;
 import Model.Usuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.model.SelectItem;
 
 /**
@@ -40,6 +38,8 @@ public class BeanUsuario implements Serializable {
     private String error = "";
     private String contrasenniaMantenimiento = "";
     private String contrasenniaConfirmacionMantenimiento = "";
+    private UsuarioDB usuarioDB = new UsuarioDB();
+    
     public BeanUsuario() {
         
         
@@ -85,11 +85,13 @@ public class BeanUsuario implements Serializable {
                         return "Opción inválida";
                 }
             case 3:
+                
                 return "index";
             default:
                 return "Opción inválida";
         }
     }
+    
     public String etiquetaOpciones(int numOpcion){
         refrescarUsuarioLogeado();
         TipoUsuario tipo= this.usuario.getTipoUsuario();
@@ -99,7 +101,7 @@ public class BeanUsuario implements Serializable {
             case 2:
                 switch(tipo){
                     case ADMINISTRADOR:
-                        return "Reportes";
+                        return "Reportes y Solicitudes";
                     case BODEGUERO:
                         return " ";
                     case CLIENTE:
@@ -124,6 +126,49 @@ public class BeanUsuario implements Serializable {
             error = ex.getMensajeParaDesarrollador();
         }
         return listaDirecciones;
+    }
+    
+    public void prueba (String id){
+        System.out.println("Hello");
+        aceptarUsuario(id);
+    }
+    
+    public LinkedList<Usuario> usuariosEspera(){
+        LinkedList<Usuario> listaUsuariosEspera = new LinkedList<>();
+        try {
+            listaUsuariosEspera = usuarioDB.obtenerUsuarioPorEstado("ESPERA");
+        } catch (SNMPExceptions ex) {
+            System.out.println(ex.getMensajeParaDesarrollador());
+        }
+        
+        return listaUsuariosEspera;
+    }
+    
+    public LinkedList<Usuario> usuariosDenegados(){
+        LinkedList<Usuario> listaUsuariosNegados = new LinkedList<>();
+        try {
+            listaUsuariosNegados = usuarioDB.obtenerUsuarioPorEstado("NEGADO");
+        } catch (SNMPExceptions ex) {
+            System.out.println(ex.getMensajeParaDesarrollador());
+        }
+        
+        return listaUsuariosNegados;
+    }
+    
+    public void aceptarUsuario(String usuarioId){
+        try {
+            usuarioDB.ModificarEstadoUsuario("ACTIVO", usuarioId);
+        } catch (SNMPExceptions ex) {
+            System.out.println(ex.getMensajeParaDesarrollador());
+        }
+    }
+    
+    public void denegarUsuario(String usuarioId){
+        try {
+            usuarioDB.ModificarEstadoUsuario("NEGADO", usuarioId);
+        } catch (SNMPExceptions ex) {
+            System.out.println(ex.getMensajeParaDesarrollador());
+        }
     }
 
     public void setListaDirecciones(LinkedList<SelectItem> listaDirecciones) {

@@ -9,7 +9,6 @@ import DAO.AccesoDatos;
 import DAO.SNMPExceptions;
 import Model.Producto;
 import Model.ProductosCarrito;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -253,6 +252,32 @@ public class ProductoDB {
 
         }
         return resultDelete;
+    }
+    
+    public int ModificarCantidadDisponible(int cantidadVendida, String idProducto) throws SNMPExceptions {
+        String update = "";
+        int resultUpdate;
+        try {
+            //Se intancia la clase de acceso a datos
+            AccesoDatos accesoDatos = new AccesoDatos();
+
+            //Se crea la sentencia de Busqueda
+            update = "EXEC PA_ControlarCantidadProducto " + cantidadVendida + " , '" + idProducto + "'";
+
+            //se ejecuta la sentencia sql
+            resultUpdate = accesoDatos.ejecutaSQL(update);
+            //se llama el array con los proyectos  
+
+        } catch (SQLException e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage(), e.getErrorCode());
+        } catch (Exception e) {
+            throw new SNMPExceptions(SNMPExceptions.SQL_EXCEPTION,
+                    e.getMessage());
+        } finally {
+
+        }
+        return resultUpdate;
     }
 }
 

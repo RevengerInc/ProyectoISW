@@ -8,7 +8,6 @@ package Controller;
 import DAO.SNMPExceptions;
 import Model.Producto;
 import Model.DB.ProductoDB;
-import Model.Pedido;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,19 +16,11 @@ import java.io.OutputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
-import org.primefaces.shaded.commons.io.FilenameUtils;
 
 /**
  *
