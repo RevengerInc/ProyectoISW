@@ -51,7 +51,7 @@ public class FacturaDB {
                 factura1.setCliente(new ClienteDB().obtenerClientePorID(rsPA.getString("IdUsuario")));
                 factura1.setPedido(new Pedido(prodDB.consultarProductosPorFacturaID(rsPA.getInt("ID"))));
                 factura1.setId(rsPA.getString("ID"));
-                factura1.setEstado(rsPA.getString("IdEstado").equals("P") ? EstadoFactura.Pendiente : rsPA.getString("IdEstado").equals("E") ? EstadoFactura.EnProceso : EstadoFactura.Finalizado);
+                factura1.setEstado(rsPA.getString("IdEstado").equals("P") ? EstadoFactura.Pendiente :  EstadoFactura.Finalizado);
                 factura1.setFechaPedido(LocalDate.parse(rsPA.getString("fecha")));
                 factura1.setTipoEnvio(rsPA.getString("TipoDespacho").equals("D") ? TipoEnvio.EnvioDirecto : rsPA.getString("TipoDespacho").equals("E") ? TipoEnvio.Encomienda : TipoEnvio.Presencial);
                 factura1.setTipoVenta(rsPA.getString("IdTipoVenta").equals("CON") ? TipoVenta.Contado : TipoVenta.Credito);

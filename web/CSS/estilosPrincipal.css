@@ -154,6 +154,9 @@ select{
 .imagenBanner{
     max-height:35rem; 
 }    
+#mainBox{
+    margin-top: 1rem; 
+}  
 /*Banner*/
 .frase-saludo{
     font-size: 1.5rem;
